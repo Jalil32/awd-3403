@@ -28,7 +28,7 @@ class Post(db.Model):
     body: so.Mapped[str] = so.mapped_column(sa.String(140))
     timestamp: so.Mapped[datetime] = so.mapped_column(index=True, default=lambda: datetime.now(timezone.utc))
     user_id: so.Mapped[int] =so.mapped_column(sa.ForeignKey(User.id), index=True)
-    rating: so.Mapped[int] = so.mapped_column(sa.Integer(1))
+    rating: so.Mapped[int] = so.mapped_column(sa.Integer())
     author: so.Mapped[User] = so.relationship(back_populates='posts')
     comments: so.WriteOnlyMapped['Post'] = so.relationship(back_populates='post')
     
@@ -36,7 +36,7 @@ class Post(db.Model):
         return '<Post []>'.format(self.body)
     
 class Comment(db.Model):
-    id: so.Mapped[int] = so.mapped_Column(primary_key=True)
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
     user_id: so.Mapped[str] = so.mapped_column(sa.ForeignKey(User.id), index=False)
     author: so.Mapped[User] = so.relationship(back_populates='comments')
     post_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Post.id), index=True)

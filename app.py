@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 from app import app, db
-from app.models import User, Post, Comment
+from app.models import User, Post #, Comment
 
 import os
 from flask import Flask, make_response, jsonify, flash, render_template, request, url_for, redirect

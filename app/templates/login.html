@@ -1,50 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome & Signup</title>
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">  -->
-<link rel = "stylesheet" href = "styles.css">
-</head>
-<body>
-<div class="container">
-    <div class="welcome">
-        <h1>Welcome!</h1>
-        <p>Intro...</p>
-    </div>
-    <div class="signup">
-        <h1>Signup</h1>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Welcome & Signup</title>
+        <link rel="stylesheet" href="../static/css/login.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="welcome">
+                <h1>Welcome!</h1>
+                <p>Intro...</p>
+            </div>
+            <div class="signup">
+                <h1>Signup</h1>
 
-        <form id="signupForm" action="#" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="text" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <input type = "password" name = "pwConfirm" placeholder="Confirm Password" required>
-            <input type="submit" value="Sign Up">
-        </form>
+                <form id="signupForm" action="#" method="post">
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder="Email"
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                    />
+                    <input
+                        type="password"
+                        name="passwordConfirm"
+                        placeholder="Confirm Password"
+                        required
+                    />
+                    <input type="submit" value="Sign Up" />
+                    <!-- Error message area for signup -->
+                    <div id="signupError" class="error-message"></div>
+                </form>
 
-        <div class="login-header-container">
-            <h1>Login</h1>
-        </div>
-        
+                <div class="login-header-container">
+                    <h1>Login</h1>
+                </div>
 
-        <div class="login-container">
-            <p>Already have an account?</p>
-            <a href="#" id="loginButton">Log in</a>
-        </div>
-        <div class="forgotPassword-container" id="login" style="display: none;">
-            <form id="loginForm" action="#" method="post">
-                <input type="text" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <input type="submit" value="Log In">
-            </form>
-            <div class="signup-link">
-                <p>Don't have an account? <a href="#" id="signupLink">Sign Up</a></p>
+                <div class="login-container">
+                    <p>Already have an account?</p>
+                    <a href="#" id="loginButton">Log in</a>
+                </div>
+                <div class="login" id="login" style="display: none">
+                    <form id="loginForm" action="#" method="post">
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            required
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            required
+                        />
+                        <input type="submit" value="Log In" />
+                        <div id="loginError" class="error-message"></div>
+                    </form>
+
+                    <div class="signup-link">
+                        <p>
+                            Don't have an account?
+                            <a href="#" id="signupLink">Sign Up</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<script src="script.js"></script>
-</body>
+        <script src="../static/js/login.js"></script>
+    </body>
 </html>

@@ -1,6 +1,6 @@
 body {
     height: 100vh;
-    background-color: #f7f7f9;
+    background-color: #FDFDFD;
     color: #e4e6eb;
 }
 
@@ -11,10 +11,10 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #f7f7f9;
+    background-color: #FDFDFD;
     display: flex;
     justify-content: center;
-    box-shadow: 0 2px 5px 0 rgba(0,143,149, 0.505);
+    box-shadow: 0 2px 5px 0 rgba(255,176, 0, 0.505);
 }
 
 .nav-list li {
@@ -27,7 +27,7 @@ body {
 
 .nav-list li a {
     display: block;
-    color: #008f95;
+    color: #D83934;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -40,12 +40,12 @@ body {
 
 .navbar-brand {
     font-size: 24pt;
-    color: #008f95;
+    color: #D83934;
     padding: 10px 25px 20px 25px;
     font-weight: 700;
 }
 #nav-title {
-    color: #008f95;
+    color: #D83934;
     padding-top: 10px;
     font-family: "Inter";
     font-size: 14pt;
@@ -58,13 +58,4 @@ body {
     .nav-list li {
         float: none;
     }
-}
-
-.nav-bar {
-    background-color: #3a3b3c;
-    font-family: "Noto Sans", sans-serif;
-    font-size: 20px;
-    width: 100%;
-    display: flex;
-    padding: 10px;
 }

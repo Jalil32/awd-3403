@@ -1,6 +1,6 @@
 body {
     height: 100vh;
-    background-color: #18101a;
+    background-color: #f7f7f9;
     color: #e4e6eb;
 }
 
@@ -11,9 +11,10 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #f7f7f9;
     display: flex;
     justify-content: center;
+    box-shadow: 0 2px 5px 0 rgba(0,143,149, 0.505);
 }
 
 .nav-list li {
@@ -26,17 +27,27 @@ body {
 
 .nav-list li a {
     display: block;
-    color: white;
+    color: #008f95;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 .nav-list li a:hover {
-    border-radius: 10px;
+    border-radius: 7px;
     transform: scale(1.2);
 }
 
+.navbar-brand {
+    font-size: 24pt;
+    color: #008f95;
+    padding: 10px 25px 20px 25px;
+}
+#nav-title {
+    color: #008f95;
+    font-size: 14pt;
+    padding-top: 10px;
+}
 /* Responsive adjustments */
 @media screen and (max-width: 600px) {
     .nav-list li {

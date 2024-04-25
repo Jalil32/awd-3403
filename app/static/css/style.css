@@ -6,7 +6,7 @@ body {
 
 .nav-list {
     list-style-type: none;
-    font-family: "Noto Sans", sans-serif;
+    font-family: "Inter";
     font-size: 20px;
     margin: 0;
     padding: 0;
@@ -42,12 +42,17 @@ body {
     font-size: 24pt;
     color: #008f95;
     padding: 10px 25px 20px 25px;
+    font-weight: 700;
 }
 #nav-title {
     color: #008f95;
-    font-size: 14pt;
     padding-top: 10px;
+    font-family: "Inter";
+    font-size: 14pt;
+    font-weight: 600;
+    line-height: normal;
 }
+
 /* Responsive adjustments */
 @media screen and (max-width: 600px) {
     .nav-list li {

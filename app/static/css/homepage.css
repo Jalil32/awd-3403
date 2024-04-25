@@ -1,0 +1,22 @@
+#intro-text {
+    color: #D83934;
+    font-size: 14pt;
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 600;
+}
+#intro-text:hover {
+    border-radius: 7px;
+    transform: scale(1.05);
+}
+
+#new-post {
+    border-radius: 8px;
+    background: #FCCD5D;
+    color: #D83934;
+    font-size: 14pt;
+    text-align: center;
+    padding-bottom: 5px;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 600;
+}

@@ -41,6 +41,7 @@
         
         <div id="popupOverlay" class="overlay-container"> 
             <div class="popup-box"> 
+                <div class="popup-inner">
                 <h2 id="popup-title">New Post</h2>
                 <p id="post-text">Review the latest dining experience you had in Perth or ask where you should dine next! </p>
                 <form class="form-container"> 
@@ -52,12 +53,15 @@
                     <input class="form-input" type="text" 
                             placeholder="Resturaunt or Cuisine"
                             id="title" name="name" optional> 
-                    <label class="form-label" for="name">Share your plate!</label> 
+                    <label class="form-label" for="name">Give us all the deets!</label> 
                     <textarea id="post-body" placeholder="Leave a review or find your new favourite plate!" cols="50" rows="10"></textarea>
+                    <label class="form-label" for="name">Share your plate!</label>
+                    <input type="file">
                     <button class="btn-submit" type="submit" onclick="togglePopup()"> 
                         Submit 
                         </button> 
                 </form> 
+            </div>
         
         
             </div> 

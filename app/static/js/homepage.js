@@ -6,3 +6,7 @@ function togglePopup() {
     var overlay = document.getElementById('popupOverlay');
     overlay.style.visibility = overlay.style.visibility === 'visible' ? 'hidden' : 'visible';
 }
+
+function postSubmission() {
+    
+}

@@ -71,6 +71,7 @@ signUpForm.addEventListener('submit', function (event) {
         })
         .then((data) => {
             if (data.status === 'success') {
+                localStorage.setItem('username', data.username);
                 window.location.href = '/';
             }
         })

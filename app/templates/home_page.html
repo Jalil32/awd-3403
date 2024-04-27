@@ -33,10 +33,39 @@
         <div class="row">
             <div class="col-sm-3"></div>
             <div id="new-post" class="col-sm-6">
-                <h3 data-popup-target="#popup" id="intro-text"></h3>
+                <button class="btn-open-popup" onclick="togglePopup()" id="intro-text"></button>
+
             </div>
             <div class="col-sm-3"></div>
         </div>
+
+        <div id="popupOverlay" class="overlay-container"> 
+            <div class="popup-box"> 
+                <h2 id="popup-title">New Post</h2>
+                <p id="post-text">Review the latest dining experience you had in Perth or ask where you should dine next! </p>
+                <form class="form-container"> 
+                    <label class="form-label" for="name"> Post-Title: </label> 
+                    <input class="form-input" type="text" 
+                            placeholder="Name your post (Required)" 
+                            id="title" name="name" required> 
+                    <label class="form-label" for="name"> Where or What: </label> 
+                    <input class="form-input" type="text" 
+                            placeholder="Resturaunt or Cuisine"
+                            id="title" name="name" optional> 
+                    <label class="form-label" for="name">Share your plate!</label> 
+                    <textarea id="post-body" placeholder="Leave a review or find your new favourite plate!" cols="50" rows="10"></textarea>
+                    <button class="btn-submit" 
+                            type="submit"> 
+                        Submit 
+                        </button> 
+                </form> 
+        
+                <button class="btn-close-popup" 
+                        onclick="togglePopup()"> 
+                    Close 
+                    </button> 
+            </div> 
+        </div> 
 
 
     </main>

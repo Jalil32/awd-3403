@@ -1,14 +1,19 @@
 #intro-text {
     color: #D83934;
-    font-size: 14pt;
+    font-size: 13.5pt;
     text-align: center;
     font-family: "Josefin Sans", sans-serif;
     font-weight: 600;
+    padding: 0;
+    border: none;
+    background: none;
 }
+
 #intro-text:hover {
     border-radius: 7px;
     transform: scale(1.05);
 }
+
 
 #new-post {
     border-radius: 8px;
@@ -16,7 +21,135 @@
     color: #D83934;
     font-size: 14pt;
     text-align: center;
-    padding-bottom: 5px;
+    padding: 12px 5px 10px 5px;
     font-family: "Josefin Sans", sans-serif;
     font-weight: 600;
 }
+
+
+.btn-open-popup { 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+} 
+
+.overlay-container { 
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.6); 
+    justify-content: center; 
+    align-items: center; 
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
+} 
+
+.popup-box { 
+    background: #fff; 
+    align-items: center;
+    padding: 24px; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 12px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); 
+    width: 600px; 
+    max-width: 80%;
+    text-align: center; 
+    opacity: 0; 
+    animation: fadeInUp 0.5s ease-in forwards; 
+} 
+
+.form-container { 
+    display: flex; 
+    flex-direction: column; 
+} 
+
+#popup-title {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 24px; 
+    color: #D83934;
+   
+}
+
+#post-text {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 15px; 
+    color: #D83934;
+    box-sizing: 20px;
+}
+.form-label { 
+    margin-bottom: 10px; 
+    font-size: 16px; 
+    color: #444; 
+    font-family: "Josefin Sans", sans-serif;
+    text-align: left; 
+} 
+
+.form-input { 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    width: 100%; 
+    box-sizing: border-box; 
+} 
+
+#post-body {
+    padding: 10px; 
+    margin-bottom: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+.btn-submit, 
+.btn-close-popup { 
+    padding: 12px 24px; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+} 
+
+.btn-submit { 
+    background-color: green; 
+    color: #fff; 
+} 
+
+.btn-close-popup { 
+    margin-top: 12px; 
+    background-color: #e74c3c; 
+    color: #fff; 
+} 
+
+.btn-submit:hover, 
+.btn-close-popup:hover { 
+    background-color: #4caf50; 
+} 
+
+/* Keyframes for fadeInUp animation */ 
+@keyframes fadeInUp { 
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    } 
+
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+} 
+
+/* Animation for popup */ 
+.overlay-container.show { 
+    display: flex; 
+    opacity: 1; 
+} 

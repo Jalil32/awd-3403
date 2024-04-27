@@ -38,7 +38,7 @@
             </div>
             <div class="col-sm-3"></div>
         </div>
-
+        
         <div id="popupOverlay" class="overlay-container"> 
             <div class="popup-box"> 
                 <h2 id="popup-title">New Post</h2>
@@ -54,16 +54,12 @@
                             id="title" name="name" optional> 
                     <label class="form-label" for="name">Share your plate!</label> 
                     <textarea id="post-body" placeholder="Leave a review or find your new favourite plate!" cols="50" rows="10"></textarea>
-                    <button class="btn-submit" 
-                            type="submit"> 
+                    <button class="btn-submit" type="submit" onclick="togglePopup()"> 
                         Submit 
                         </button> 
                 </form> 
         
-                <button class="btn-close-popup" 
-                        onclick="togglePopup()"> 
-                    Close 
-                    </button> 
+        
             </div> 
         </div> 
 

@@ -48,7 +48,7 @@
 }
 
 .popup-box { 
-    background: #fff; 
+    background: #fdfdfd; 
     align-items: center;
     padding: 24px; 
     border-radius: 12px; 
@@ -66,21 +66,26 @@
 .form-container { 
     display: flex; 
     flex-direction: column; 
+    padding: 0px 10px 0px 10px;
 } 
 
 #popup-title {
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    display: flex;
     font-family: "Josefin Sans", sans-serif;
     font-size: 24px; 
     color: #D83934;
-   
 }
 
 #post-text {
     font-family: "Josefin Sans", sans-serif;
     font-size: 15px; 
     color: #D83934;
-    box-sizing: 20px;
+    padding: 0px 8px 0px 8px;
 }
+
 .form-label { 
     margin-bottom: 10px; 
     font-size: 16px; 
@@ -103,10 +108,38 @@
     padding: 10px; 
     margin-bottom: 20px; 
     border: 1px solid #ccc; 
+    color: #000000;
     border-radius: 8px; 
     font-size: 16px; 
     width: 100%; 
     box-sizing: border-box; 
+    min-width: 532px;
+    max-width: 532px;
+    min-height: 123px;
+    
+}
+
+.button-labels{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 16px; 
+    color: #008f95;
+    padding-right: 10px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
+.radio-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-right: 20px;
 }
 
 .btn-submit, 
@@ -118,17 +151,28 @@
     transition: background-color 0.3s ease, color 0.3s ease; 
 } 
 
+.close-button {
+    background: none;
+    font-size: 10;
+    color: #D83934;
+    border: none;
+    cursor: pointer; 
+    padding: 0;
+    justify-content: right;
+}
+
 .btn-submit { 
     margin-top: 12px; 
-    background-color: #e74c3c; 
+    background-color: #D83934; 
     color: #fdfdfd;
+    font-size: pt;
     font-family: "Josefin Sans", sans-serif;
 } 
 
 
 .btn-submit:hover, 
 .btn-close-popup:hover { 
-    background-color: #4caf50; 
+    background-color: #008f95; 
 } 
 
 /* Keyframes for fadeInUp animation */ 

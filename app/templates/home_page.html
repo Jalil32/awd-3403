@@ -42,24 +42,27 @@
         <div id="popupOverlay" class="overlay-container"> 
             <div class="popup-box"> 
                 <div class="popup-inner">
-                <h2 id="popup-title">New Post</h2>
-                <p id="post-text">Review the latest dining experience you had in Perth or ask where you should dine next! </p>
+                <h2 id="popup-title">New Post <button onclick="togglePopup()" class="close-button">&times;</button> </h2> 
+                <h2 id="post-text">Review the latest dining experience you had in Perth or ask where you should dine next! </h2>
                 <form class="form-container"> 
+                    <div class="radio-buttons">
+                        <div class="radio-option">
+                            <label class="button-labels" for="review">Write a Review.</label>
+                            <input type="radio" id="Review" name="option">
+                        </div>
+                        <div class="radio-option">
+                            <label class="button-labels" for="request">Find a plate.</label>
+                            <input type="radio" id="Searching" name="option">
+                        </div>
+                    </div>
                     <label class="form-label" for="name"> Post-Title: </label> 
-                    <input class="form-input" type="text" 
-                            placeholder="Name your post (Required)" 
-                            id="title" name="name" required> 
-                    <label class="form-label" for="name"> Where or What: </label> 
-                    <input class="form-input" type="text" 
-                            placeholder="Resturaunt or Cuisine"
-                            id="title" name="name" optional> 
+                    <input class="form-input" type="text" placeholder="Name your post (Required)" id="title" name="name" required> 
+                    
                     <label class="form-label" for="name">Give us all the deets!</label> 
                     <textarea id="post-body" placeholder="Leave a review or find your new favourite plate!" cols="50" rows="10"></textarea>
                     <label class="form-label" for="name">Share your plate!</label>
                     <input type="file">
-                    <button class="btn-submit" type="submit" onclick="togglePopup()"> 
-                        Submit 
-                        </button> 
+                    <button class="btn-submit" type="submit" onclick="togglePopup()">Plate it</button> 
                 </form> 
             </div>
         

@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.exc import IntegrityError
 import sqlalchemy as sa
 from app import db  # Import the database
-from app.models import User  # Import your user model
+from app.models import User, Post  # Import your user model
 from app import jwt
 
 # Create a blueprint for organizing routes

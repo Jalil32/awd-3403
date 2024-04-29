@@ -9,5 +9,5 @@ function togglePopup() {
 
 function toggleRating() {
     var rating = document.querySelector('.inline-rating');
-    rating.style.display = document.getElementById('Searching').checked ? 'none' : 'flex';
+    rating.style.display = document.getElementById('Request').checked ? 'none' : 'flex';
 }

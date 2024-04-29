@@ -29,6 +29,7 @@ class User(UserMixin, db.Model):
 
 class Post(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    title: so.Mapped[str] = so.mapped_column(sa.String(100))
     body: so.Mapped[str] = so.mapped_column(sa.String(1000))
     timestamp: so.Mapped[datetime] = so.mapped_column(sa.DateTime(timezone=True), index=True, default=datetime.now(timezone.utc))
     user_id: so.Mapped[int] =so.mapped_column(sa.ForeignKey(User.id), index=True)

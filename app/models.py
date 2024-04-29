@@ -3,9 +3,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from typing import Optional
 import sqlalchemy as sa
+from sqlalchemy.orm import class_mapper
 import sqlalchemy.orm as so
 from app import db#, login
 from hashlib import md5
+from dataclasses import dataclass
 
 # flask db migrate - generates a migration script (needs to be incorporated into git source control idk how yet)
 # flask db upgrade - updates the database but doesn't destroy any existing data
@@ -34,7 +36,12 @@ class Post(db.Model):
     user_id: so.Mapped[int] =so.mapped_column(sa.ForeignKey(User.id), index=True)
     rating: so.Mapped[int] = so.mapped_column(sa.Integer())
     author: so.Mapped[User] = so.relationship(back_populates='posts')
+    image_path: so.Mapped[str] = so.mapped_column(sa.String(140), nullable=True)
+
     #comments: so.WriteOnlyMapped['Post'] = so.relationship(back_populates='post')
+    def as_dict(self):
+        """Dictionary representation of the SQLAlchemy model."""
+        return {c.name: getattr(self, c.name) for c in class_mapper(self.__class__).columns}
 
     def __rpr__(self):
         return '<Post []>'.format(self.body)

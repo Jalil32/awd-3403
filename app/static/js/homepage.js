@@ -7,6 +7,7 @@ function togglePopup() {
     overlay.style.visibility = overlay.style.visibility === 'visible' ? 'hidden' : 'visible';
 }
 
-function postSubmission() {
-    
+function toggleRating() {
+    var rating = document.querySelector('.inline-rating');
+    rating.style.display = document.getElementById('Searching').checked ? 'none' : 'flex';
 }

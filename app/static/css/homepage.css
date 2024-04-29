@@ -87,7 +87,6 @@
 }
 
 .form-label { 
-    margin-bottom: 10px; 
     font-size: 16px; 
     color: #444; 
     font-family: "Josefin Sans", sans-serif;
@@ -142,6 +141,47 @@
     padding-right: 20px;
 }
 
+.inline-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rate {
+    float: right;
+    height: 46px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float: right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #FCCD5D;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #D83934;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: rgba(216, 57, 52, 0.5);
+}
+
 .btn-submit, 
 .btn-close-popup { 
     padding: 12px 24px; 
@@ -161,6 +201,11 @@
     justify-content: right;
 }
 
+.close-button:hover {
+    border-radius: 7px;
+    transform: scale(2);
+}
+
 .btn-submit { 
     margin-top: 12px; 
     background-color: #D83934; 
@@ -173,6 +218,7 @@
 .btn-submit:hover, 
 .btn-close-popup:hover { 
     background-color: #008f95; 
+    font-size: 150%;
 } 
 
 /* Keyframes for fadeInUp animation */ 

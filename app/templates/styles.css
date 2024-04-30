@@ -1,0 +1,184 @@
+/* Styling of login/signup page */
+
+   /*Page font and font weight*/
+   body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+}    
+
+
+/* left side welcome and intro container */
+.welcome {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+h1, p {
+    color: #fff; /* Change font color */
+    text-align: center;
+}
+
+.signup h1 {
+    color: #000; /* Change font color */
+}
+
+form {
+    max-width: 300px; /* Adjust form width */
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+
+/*Overall container for background image*/
+.container {
+    display: flex;
+    height: 100vh;
+    background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg'); /* background image URL */
+    background-size: cover; /* Cover the entire background */
+    background-position: -275px center;
+}
+
+/* Formatting right-side signup container, with rounded corners */
+.signup {
+    z-index: 1;
+    color: #c24539;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    border-radius: 40px 0px 0px 40px;
+}
+
+/* Login header above form */
+.login-header-container {
+display: none;
+justify-content: center; /* Center horizontally */
+align-items: center; /* Center vertically */
+}
+
+.welcome h1 {
+    color: black;
+    justify-content: center;
+}
+
+/*Adjusting welcome spiel*/
+.welcome h2 {
+    max-width: 400px;
+    justify-content: center;
+    text-align: center;
+}
+
+.signup p {
+    color: black; /* Colour of "Already have an account?" text */
+}
+
+/*Adjusting login container*/
+.login-container {
+    margin: 10px;
+    display: flex;
+}
+
+#loginForm {
+margin: 10px;
+}
+
+.forgotPassword-container {
+    padding: 20px;
+    justify-content: left;
+    flex-direction: column;
+}
+
+/* login link-button to login form */
+.login-container a {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    color: #008f95;
+    text-decoration: underline; /*underline effect*/
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.login-container a:hover {
+    color: darkblue; /* hover colour*/
+}
+
+h1, p {
+    margin: 0 0 20px;
+    max-width: 400px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/*formatting the login/signup form*/
+form {
+    background-color: #e9b000;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+input[type="text"], input[type="password"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #e24f42;
+    color: white;
+    cursor: pointer;
+    border: #e24f42;
+}
+
+/*Toggling submit button colour change upon hover*/
+input[type="submit"]:hover {
+    background-color: #c24539;
+}
+
+/*Signup link colouring*/
+#signupLink {
+    color: #008f95;
+}
+
+#signupLink:hover {
+    color: darkblue;
+}
+
+
+/* Adjusting for a mobile responsive design (for smaller screens) */
+@media screen and (max-width: 600px) {
+    
+    .container {
+        flex-direction: column; /* Stack items vertically instead of side-by-side*/
+        width: 100%;
+        background-position: -300px; /*Adjusting background for smaller screen*/
+
+    }
+
+    .welcome {
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Re-adjusting signup form for mobile view? */
+    .signup {
+        margin-top: 20px; /* Reset margin */
+        width: 100%;
+        border-radius: 40px 40px 0px 0px; /* Changing rounded corners from left-right to top-bottom */
+        padding: 0;
+        padding-top: 20px;
+    }
+}

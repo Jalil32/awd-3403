@@ -18,3 +18,4 @@ function loadPosts() {
 document.addEventListener("DOMContentLoaded", function () {
     loadHome(); // Load the home page content by default
 });
+

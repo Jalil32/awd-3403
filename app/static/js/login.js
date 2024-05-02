@@ -71,6 +71,8 @@ signUpForm.addEventListener('submit', function (event) {
         })
         .then((data) => {
             if (data.status === 'success') {
+                localStorage.setItem('username', data.username);
+                localStorage.setItem('user_id', data.user_id)
                 window.location.href = '/';
             }
         })
@@ -108,6 +110,7 @@ loginForm.addEventListener('submit', function (event) {
         .then((data) => {
             if (data.status === 'success') {
                 localStorage.setItem('username', data.username);
+                localStorage.setItem('user_id', data.user_id)
                 window.location.href = '/';
             }
         })

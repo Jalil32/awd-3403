@@ -105,7 +105,27 @@ window.onload = function postFeed() {
       .catch(error => {
           console.error('Error:', error);
       });
-  
-    
+   
   }
+
+  function submissionMessage(postStatus) {
+    var displayArea = document.querySelector('.popup-inner');
+
+    // Clear the display area
+    displayArea.innerHTML = '';
+    var response = document.createElement('p');
+    // Set the id of the new element
+    response.setAttribute("id", "postFeedback");
+
+    if (postStatus === 'success'){
+        // Set the text of the new element
+        response.textContent = 'Your post has been plated up!';
+    } else {
+        // Set the text of the new element
+        response.textContent = 'Sorry! We dropped this plate, please refresh and try again.';
+    }
+
+    // Append the new element to the display area
+    displayArea.appendChild(response);
+}
   

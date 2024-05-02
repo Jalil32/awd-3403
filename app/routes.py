@@ -98,7 +98,7 @@ def handle_login():
     # Generate a JWT token for the user
     access_token = create_access_token(identity=user.id)
 
-    response = make_response(jsonify({"status": "success", "message": "Login successful!", "token": access_token}))
+    response = make_response(jsonify({"status": "success", "username": user.username, "user-id": user.id, "message": "Signup successful!", "token": access_token}))
     set_access_cookies(response, access_token)
 
     return response, 200
@@ -147,10 +147,11 @@ def handle_signup():
         db.session.rollback()  # Roll back the transaction on error
         return jsonify({"status": "error", "message": "Database error. Please try again later."}), 500
 
+
     # Generate JWT token upon successful signup
     access_token = create_access_token(identity=new_user.id)
 
-    response = make_response(jsonify({"status": "success", "message": "Signup successful!", "token": access_token}))
+    response = make_response(jsonify({"status": "success", "message": "Signup successful!", "username": username, "user_id": user.id, "token": access_token}))
     set_access_cookies(response, access_token)
 
     return response, 200

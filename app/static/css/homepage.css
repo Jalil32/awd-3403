@@ -1,3 +1,7 @@
+main {
+    overflow-y: scroll
+}
+
 #intro-text {
     color: #D83934;
     font-size: 13.5pt;
@@ -239,4 +243,36 @@
     display: flex; 
     opacity: 1; 
 } 
+
+
+#feed {
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    overflow:scroll;
+    background-color: #FCCD5D;
+    border-radius: 10px;
+}
+
+#post_container {
+    border-radius: 10px;
+    border-color: #000000;
+    padding: 20px;
+    background-color: #fdfdfd;
+    z-index: 10;
+    margin-bottom: 10px;
+}
+
+#post_title {
+    color: #D83934;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 500;
+    font-size: 24;
+}
+#post_user, #post_title, #post_body {
+    color: #D83934;
+    font-family: "Josefin Sans", sans-serif;
+}
+#post_user {
+    font-size: 13.5pt;
+}
 

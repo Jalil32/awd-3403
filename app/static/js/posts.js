@@ -1,17 +1,61 @@
 
-function postSubmission() {
+window.onload = function postFeed() {
 
-  var title = document.getElementById("post-title");
-  var body = document.getElementById("post-body");
-  var user = localStorage.getItem('username');
+  const feedStart = document.getElementById("feed");
+  posts = [
+    {
+        'author': 'Mary',
+        'title': "Best Korean In Perth!",
+        'body': 'Beautiful day in Portland!'
+    },
+    {
+        'author': 'Jalil',
+        'title': "Messina Maddness",
+        'body': 'Best ice cream in perth!!!'
+    },
+    {
+        'author': 'Jan',
+        'title': "Jalil's pizza shop",
+        'body': 'Best pizza place in perth!!!'
+    },
+    {
+        'author': 'Jayce',
+        'title': "Messina Maddness",
+        'body': 'Best ice cream in perth!!!'
+    },
+    {
+        'author': 'Lloyd',
+        'title': "Messina Maddness",
+        'body': 'Best ice cream in perth!!!'
+    },
+]
+
+    for(var i = 0; i < posts.length; i++){
+        var div = document.createElement('div');
+        div.setAttribute("id", "post_container")
+
+        var user = document.createElement('p');
+        user.setAttribute("id", "post_user");
+        user.textContent=posts[i].author;
+
+        var title = document.createElement('h2');
+        title.setAttribute("id", "post_title")
+        title.textContent=posts[i].title;
+
+        var body = document.createElement('p');
+        body.setAttribute("id", "post_body")
+        body.textContent=posts[i].body;
+
+        div.append(user, title, body);
+        feedStart.append(div);
+    }
+
   
-
 }
 
 function submitPost() {
     var reviewBtn = document.getElementById('Review');
     var requestBtn = document.getElementById('Request');
-
 
 
     if (reviewBtn.checked){
@@ -64,3 +108,4 @@ function submitPost() {
 
   
 }
+

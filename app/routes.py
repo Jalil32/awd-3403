@@ -19,22 +19,25 @@ routes = Blueprint("routes", __name__)  # Blueprint name and module name
 def handle_post():
     """Creates a post in the database."""
 
-    image = request.files['image']
-    print(image.filename)
-    json_data = json.loads(request.form.get('data'))
-    print(json_data)
+    image = None
 
-    if image.filename:
+    if 'image' in request.files:
+        image = request.files['image']
+        print(image.filename)
         print("saving image")
         filename = secure_filename(image.filename)
         image_path = os.path.join(UPLOAD_FOLDER, filename)
         image.save(image_path)
+        print("image saved")
 
-    print("image saved")
+    json_data = json.loads(request.form.get('data'))
+    print(json_data)
 
     if not json_data:
         return jsonify({"status": "error", "message": "No JSON data provided"}), 400
 
+
+    title = json_data.get("title")
     body = json_data.get("body")
     user_id = json_data.get("user_id")
     rating = json_data.get("rating")
@@ -53,9 +56,9 @@ def handle_post():
 
     # Create new Post instance
     if image:
-        new_post = Post(body=body, user_id=user_id, rating=rating, author=author, image_path=image_path)
+        new_post = Post(title=title, body=body, user_id=user_id, rating=rating, author=author, image_path=image_path)
     else:
-        new_post = Post(body=body, user_id=user_id, rating=rating, author=author)
+        new_post = Post(title=title, body=body, user_id=user_id, rating=rating, author=author)
 
     try:
         # Add the new post to the database

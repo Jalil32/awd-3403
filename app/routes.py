@@ -1,14 +1,77 @@
 from flask import Blueprint, jsonify, request, make_response, render_template, redirect, url_for
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy.exc import IntegrityError
+from werkzeug.utils import secure_filename
+from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 import sqlalchemy as sa
 from app import db  # Import the database
 from app.models import User, Post  # Import your user model
 from app import jwt
+import json
+import os
+
+UPLOAD_FOLDER = './app/images'
 
 # Create a blueprint for organizing routes
 routes = Blueprint("routes", __name__)  # Blueprint name and module name
+
+@routes.route("/api/post", methods=["POST"])
+def handle_post():
+    """Creates a post in the database."""
+
+    image = None
+
+    if 'image' in request.files:
+        image = request.files['image']
+        print(image.filename)
+        print("saving image")
+        filename = secure_filename(image.filename)
+        image_path = os.path.join(UPLOAD_FOLDER, filename)
+        image.save(image_path)
+        print("image saved")
+
+    json_data = json.loads(request.form.get('data'))
+    print(json_data)
+
+    if not json_data:
+        return jsonify({"status": "error", "message": "No JSON data provided"}), 400
+
+
+    title = json_data.get("title")
+    body = json_data.get("body")
+    user_id = json_data.get("user_id")
+    rating = json_data.get("rating")
+
+    if not body or body.strip() == "":
+        return jsonify({"status": "error", "message": "Body is required"}), 400
+    if not user_id:
+        return jsonify({"status": "error", "message": "User ID is required"}), 400
+    if rating is None:  # Assumes rating is required; adjust if optional
+        return jsonify({"status": "error", "message": "Rating is required"}), 400
+
+    # Validate user ID
+    author = User.query.filter_by(id=user_id).first()
+    if not author:
+        return jsonify({"status": "error", "message": "User not found"}), 404
+
+    # Create new Post instance
+    if image:
+        new_post = Post(title=title, body=body, user_id=user_id, rating=rating, author=author, image_path=image_path)
+    else:
+        new_post = Post(title=title, body=body, user_id=user_id, rating=rating, author=author)
+
+    try:
+        # Add the new post to the database
+        db.session.add(new_post)
+        db.session.commit()
+    except IntegrityError:
+        db.session.rollback()  # Roll back the transaction on IntegrityError
+        return jsonify({"status": "error", "message": "Failed to create post due to data integrity issue."}), 500
+    except SQLAlchemyError as e:
+        db.session.rollback()  # Roll back on other SQLAlchemy errors
+        return jsonify({"status": "error", "message": "Database error: " + str(e)}), 500
+
+    return jsonify(new_post.as_dict()), 201
 
 @routes.route("/api/login", methods=["POST"])
 def handle_login():

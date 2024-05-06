@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request, make_response, render_template, redirect, url_for
+from flask import send_from_directory
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -10,10 +11,17 @@ from app import jwt
 import json
 import os
 
+
 UPLOAD_FOLDER = './app/images'
+SEND_FOLDER = '../app/images'
 
 # Create a blueprint for organizing routes
 routes = Blueprint("routes", __name__)  # Blueprint name and module name
+
+@routes.route('/images/<filename>')
+def uploaded_file(filename):
+    print("sending image...")
+    return send_from_directory(SEND_FOLDER , filename)
 
 @routes.route("/api/post", methods=["POST"])
 def handle_post():
@@ -30,17 +38,10 @@ def handle_post():
         image.save(image_path)
         print("image saved")
 
-    json_data = json.loads(request.form.get('data'))
-    print(json_data)
-
-    if not json_data:
-        return jsonify({"status": "error", "message": "No JSON data provided"}), 400
-
-
-    title = json_data.get("title")
-    body = json_data.get("body")
-    user_id = json_data.get("user_id")
-    rating = json_data.get("rating")
+    title = request.form.get("title")
+    body = request.form.get("body")
+    user_id = request.form.get("user_id")
+    rating = request.form.get("rating")
 
     if not body or body.strip() == "":
         return jsonify({"status": "error", "message": "Body is required"}), 400
@@ -63,6 +64,7 @@ def handle_post():
     try:
         # Add the new post to the database
         db.session.add(new_post)
+        print("adding post")
         db.session.commit()
     except IntegrityError:
         db.session.rollback()  # Roll back the transaction on IntegrityError
@@ -71,7 +73,37 @@ def handle_post():
         db.session.rollback()  # Roll back on other SQLAlchemy errors
         return jsonify({"status": "error", "message": "Database error: " + str(e)}), 500
 
-    return jsonify(new_post.as_dict()), 201
+    response = new_post.as_dict()
+    response['status'] = 'success'
+
+    print(response)
+
+    return jsonify(response), 201
+
+@routes.route("/api/post", methods=["GET"])
+def get_posts():
+    """Retrieves all the posts to render on the front end."""
+    try:
+        # Query all posts from the database
+        posts = Post.query.all()
+
+        # Serialize the posts data
+        posts_data = [{
+            'id': post.id,
+            'title': post.title,
+            'body': post.body,
+            'user_id': post.user_id,
+            'rating': post.rating,
+            'image_path': post.image_path if post.image_path else None,
+            'author': post.author.username, # Assuming the User model has a name field
+            
+        } for post in posts]
+
+        # Return the serialized posts as JSON
+        return jsonify(posts_data), 200
+    except Exception as e:
+        # Handle errors and send an appropriate error message
+        return jsonify({"status": "error", "message": "An error occurred while retrieving posts: " + str(e)}), 500
 
 @routes.route("/api/login", methods=["POST"])
 def handle_login():

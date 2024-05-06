@@ -13,3 +13,4 @@ class Config:
     JWT_TOKEN_LOCATION = ["cookies"]
     JWT_COOKIE_NAME = "jwtToken"
     JWT_ACCESS_COOKIE_PATH = '/'
+    UPLOAD_FOLDER = 'app/images'

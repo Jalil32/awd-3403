@@ -3,50 +3,63 @@ window.onload = function postFeed() {
 
     const feedStart = document.getElementById("feed");
     posts = [
+        {
+            'author': 'Jalil',
+            'title': "Messina Maddness",
+            'body': 'Best ice cream in perth!!!'
+        },
       {
           'author': 'Mary',
           'title': "Best Korean In Perth!",
-          'body': 'Beautiful day in Portland!'
-      },
-      {
-          'author': 'Jalil',
-          'title': "Messina Maddness",
-          'body': 'Best ice cream in perth!!!'
-      },
-      {
-          'author': 'Jan',
-          'title': "Jalil's pizza shop",
-          'body': 'Best pizza place in perth!!!'
-      },
-      {
-          'author': 'Jayce',
-          'title': "Messina Maddness",
-          'body': 'Best ice cream in perth!!!'
-      },
-      {
-          'author': 'Lloyd',
-          'title': "Messina Maddness",
-          'body': 'Best ice cream in perth!!!'
+          'body': 'Beautiful day in Portland!',
+          'rating': '5',
+          
       },
   ]
   
-      for(var i = 0; i < posts.length; i++){
-          var div = document.createElement('div');
-          div.setAttribute("id", "post_container")
+      for(let i = 0; i < posts.length; i++){
+        let div = document.createElement('div');
+        div.setAttribute("id", "post_container");
+
+        let user = document.createElement('p');
+        user.setAttribute("id", "post_user");
+        user.textContent=posts[i].author;
+
+        let title = document.createElement('h2');
+        title.setAttribute("id", "post_title");
+        title.textContent=posts[i].title;
+
+        let ratingContainer = document.createElement('div');
+
+        if(posts[i].rating){
+            ratingContainer.setAttribute("class", "inline_stars");
+            ratingContainer.setAttribute("id", "feed_stars");
+            let userRating = posts[i].rating;
+            let stars = '';
+            for(let j = 0; j < 5; j++){
+                if (j < userRating) {
+                    stars += '<span style="color: #FCCD5D;">★</span>';
+                } else {
+                    stars += '<span style="color: #ccc;">★</span>';
+                }
+            }
+            ratingContainer.innerHTML = stars;
+        }
+        
+
+        let body = document.createElement('p');
+        body.setAttribute("id", "post_body");
+        body.textContent=posts[i].body;
+        
   
-          var user = document.createElement('p');
-          user.setAttribute("id", "post_user");
-          user.textContent=posts[i].author;
-  
-          var title = document.createElement('h2');
-          title.setAttribute("id", "post_title")
-          title.textContent=posts[i].title;
-  
-          var body = document.createElement('p');
-          body.setAttribute("id", "post_body")
-          body.textContent=posts[i].body;
-  
-          div.append(user, title, body);
+        if (posts[i].image) {
+            let imageElement = document.createElement('img');
+            imageElement.src = posts[i].image;
+            div.append(user, ratingContainer, title, imageElement, body);
+        } else {
+            div.append(user, ratingContainer, title, body);
+        }
+          
           feedStart.append(div);
       }
   
@@ -54,13 +67,12 @@ window.onload = function postFeed() {
   }
   
   function submitPost() {
-      var reviewBtn = document.getElementById('Review');
-      var requestBtn = document.getElementById('Request');
+      let reviewBtn = document.getElementById('Review');
   
   
       if (reviewBtn.checked){
-          var starRadios = document.querySelectorAll('.inline-rating input[type="radio"]');
-          var checkedStars = 0;
+          let starRadios = document.querySelectorAll('.inline-rating input[type="radio"]');
+          let checkedStars = 0;
           starRadios.forEach(function(radio) {
               // Check if the radio button is checked
               if (radio.checked) {
@@ -109,11 +121,11 @@ window.onload = function postFeed() {
   }
 
   function submissionMessage(postStatus) {
-    var displayArea = document.querySelector('.popup-inner');
+    let displayArea = document.querySelector('.popup-inner');
 
     // Clear the display area
     displayArea.innerHTML = '';
-    var response = document.createElement('p');
+    let response = document.createElement('p');
     // Set the id of the new element
     response.setAttribute("id", "postFeedback");
 

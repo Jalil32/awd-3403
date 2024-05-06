@@ -2,6 +2,14 @@ body {
     height: 100vh;
     background-color: #FDFDFD;
     color: #e4e6eb;
+    background-image: url(../../images/big.jpeg);
+    background-attachment: fixed;
+    background-size: 100%;
+
+}
+
+.navbar{
+    border: none;
 }
 
 .nav-list {
@@ -59,9 +67,11 @@ body {
 
 
 @media screen and (max-width: 600px) {
+
     .navbar-brand {
         font-size: 20pt;
-        padding: 12px 12.5px 0px 12.5px;
+        padding: 12px 13px 0px 13px;
+        margin-top: 22px;
     }
     
     .nav-list li {

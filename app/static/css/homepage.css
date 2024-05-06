@@ -1,3 +1,4 @@
+
 main {
     overflow-y: scroll
 }
@@ -82,14 +83,17 @@ main {
     margin-bottom: 0vh;
 
 }
-#post_user, #post_title, #post_body {
+#post_title, #post_body {
     color: #D83934;
     font-family: "Josefin Sans", sans-serif;
     margin-bottom: 0;
 }
 #post_user {
     font-size: 13.5pt;
+    font-family: "Josefin Sans", sans-serif;
+    margin-bottom: 0;
     align-items: center;
+    color: #008f95;
 }
 
 #post_pic {

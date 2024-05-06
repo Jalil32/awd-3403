@@ -31,7 +31,6 @@ main {
 }
 
 
-
 #feed {
     padding-top: 10px;
     padding-bottom: 10px; 
@@ -61,4 +60,20 @@ main {
 }
 #post_user {
     font-size: 13.5pt;
+}
+
+@media screen and (max-width: 600px) {
+    .navbar-brand {
+        font-size: 20pt;
+        padding: 12px 12.5px 0px 12.5px;
+    }
+    
+    .nav-list li {
+        float: none;
+    }
+
+    #intro-text {
+       font-size: 5vw;
+    }
+
 }

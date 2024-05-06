@@ -1,52 +1,23 @@
 window.onload = function postFeed() {
-    const feedStart = document.getElementById('feed');
-    posts = [
-        {
-            author: 'Mary',
-            title: 'Best Korean In Perth!',
-            body: 'Beautiful day in Portland!',
-        },
-        {
-            author: 'Jalil',
-            title: 'Messina Maddness',
-            body: 'Best ice cream in perth!!!',
-        },
-        {
-            author: 'Jan',
-            title: "Jalil's pizza shop",
-            body: 'Best pizza place in perth!!!',
-        },
-        {
-            author: 'Jayce',
-            title: 'Messina Maddness',
-            body: 'Best ice cream in perth!!!',
-        },
-        {
-            author: 'Lloyd',
-            title: 'Messina Maddness',
-            body: 'Best ice cream in perth!!!',
-        },
-    ];
 
-    for (var i = 0; i < posts.length; i++) {
-        var div = document.createElement('div');
-        div.setAttribute('id', 'post_container');
+    fetch('/api/post', {
+        method: 'GET',
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Server error, please try again later.');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            renderPosts(data);
+            
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 
-        var user = document.createElement('p');
-        user.setAttribute('id', 'post_user');
-        user.textContent = posts[i].author;
-
-        var title = document.createElement('h2');
-        title.setAttribute('id', 'post_title');
-        title.textContent = posts[i].title;
-
-        var body = document.createElement('p');
-        body.setAttribute('id', 'post_body');
-        body.textContent = posts[i].body;
-
-        div.append(user, title, body);
-        feedStart.append(div);
-    }
 };
 
 function submitPost(event) {
@@ -103,4 +74,56 @@ function submitPost(event) {
         .catch((error) => {
             console.error('Error:', error);
         });
+}
+
+
+function renderPosts(posts){
+    const feedStart = document.getElementById('feed');
+
+    for(let i = 0; i < posts.length; i++){
+        let div = document.createElement('div');
+        div.setAttribute("id", "post_container");
+
+        let title = document.createElement('h2');
+        title.setAttribute("id", "post_title");
+        title.textContent=posts[i].title;
+
+        let ratingContainer = document.createElement('div');
+        if(posts[i].rating){
+            ratingContainer.setAttribute("id", "feed_stars");
+            let userRating = posts[i].rating;
+            let stars = '';
+            for(let j = 0; j < 5; j++){
+                if (j < userRating) {
+                    stars += '<span style="color: #FCCD5D;">★</span>';
+                } else {
+                    stars += '<span style="color: #ccc;">★</span>';
+                }
+            }
+            ratingContainer.innerHTML = stars;
+        }
+
+        let user = document.createElement('p');
+        user.setAttribute("id", "post_user");
+        user.textContent=posts[i].author;
+
+        let body = document.createElement('p');
+        body.setAttribute("id", "post_body");
+        body.textContent=posts[i].body;
+        user.append(body);
+        
+  
+        if (posts[i].image_path) {
+            let imageElement = document.createElement('img');
+            imageElement.setAttribute("id", "post_pic");
+            console.log("it worked?");
+            imageElement.src = posts[i].image_path.split('app')[1];
+            div.append(title, ratingContainer, imageElement, user);
+        } else {
+            div.append(title, ratingContainer, user);
+            console.log("it worked?");
+        }
+          
+          feedStart.append(div);
+      }
 }

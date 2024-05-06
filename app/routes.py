@@ -13,9 +13,15 @@ import os
 
 
 UPLOAD_FOLDER = './app/images'
+SEND_FOLDER = '../app/images'
 
 # Create a blueprint for organizing routes
 routes = Blueprint("routes", __name__)  # Blueprint name and module name
+
+@routes.route('/images/<filename>')
+def uploaded_file(filename):
+    print("sending image...")
+    return send_from_directory(SEND_FOLDER , filename)
 
 @routes.route("/api/post", methods=["POST"])
 def handle_post():
@@ -89,10 +95,8 @@ def get_posts():
             'user_id': post.user_id,
             'rating': post.rating,
             'image_path': post.image_path if post.image_path else None,
-            'author': {
-                'id': post.author.id,
-                'username': post.author.username,  # Assuming the User model has a name field
-            }
+            'author': post.author.username, # Assuming the User model has a name field
+            
         } for post in posts]
 
         # Return the serialized posts as JSON

@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request, make_response, render_template, redirect, url_for
+from flask import send_from_directory
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -9,6 +10,7 @@ from app.models import User, Post  # Import your user model
 from app import jwt
 import json
 import os
+
 
 UPLOAD_FOLDER = './app/images'
 
@@ -180,3 +182,36 @@ def homepage():
 @jwt.unauthorized_loader
 def handle_missing_jwt_token(error):
     return redirect(url_for('routes.login_page'))
+
+@routes.route("/api/post", methods=["GET"])
+@jwt_required()
+def get_posts():
+    """Retrieves all the posts to render on the front end."""
+    try:
+        # Query all posts from the database
+        posts = Post.query.all()
+        
+        # Serialize the posts data
+        posts_data = [{
+            'id': post.id,
+            'title': post.title,
+            'body': post.body,
+            'user_id': post.user_id,
+            'rating': post.rating if post.rating else None,
+            'image_path': post.image_path if post.image_path else None,
+            'author': {
+                'id': post.author.id,
+                'name': post.author.name,  # Assuming the User model has a name field
+            }
+        } for post in posts]
+
+        # Return the serialized posts as JSON
+        return jsonify(posts_data), 200
+    except Exception as e:
+        # Handle errors and send an appropriate error message
+        return jsonify({"status": "error", "message": "An error occurred while retrieving posts: " + str(e)}), 500
+
+@routes.route('/uploads/<filename>')
+@jwt_required()
+def uploaded_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)

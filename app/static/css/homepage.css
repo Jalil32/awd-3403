@@ -39,6 +39,17 @@ main {
     border-radius: 10px;
 }
 
+#feed_stars{
+    display: flex;
+    justify-content: space-between;
+    color: #FCCD5D;
+    text-align: right;
+    clear: both;
+    width: 1em;
+    font-size: 3vh;
+    margin-bottom: 1.5vh;
+}
+
 #post_container {
     border-radius: 10px;
     border-color: #000000;
@@ -52,7 +63,10 @@ main {
     color: #D83934;
     font-family: "Josefin Sans", sans-serif;
     font-weight: 500;
-    font-size: 24;
+    font-size: 5vh;
+    margin-top: 1.5vh;
+    margin-bottom: 0vh;
+
 }
 #post_user, #post_title, #post_body {
     color: #D83934;
@@ -61,6 +75,8 @@ main {
 #post_user {
     font-size: 13.5pt;
 }
+
+
 
 @media screen and (max-width: 600px) {
     .navbar-brand {

@@ -48,7 +48,7 @@
     padding: 10px 10px;
     display: flex;
     font-family: "Josefin Sans", sans-serif;
-    font-size: 3.5px; 
+    font-size: 3.5vh; 
     color: #D83934;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .form-label { 
-    font-size: 16px; 
+    font-size: 13pt; 
     color: #444; 
     font-family: "Josefin Sans", sans-serif;
     text-align: left; 
@@ -84,7 +84,7 @@
     border: 1px solid #ccc; 
     color: #000000;
     border-radius: 8px; 
-    font-size: 16px; 
+    font-size: 13pt; 
     width: 100%; 
     box-sizing: border-box; 
     min-width: 100%;
@@ -254,5 +254,11 @@
 
     #x_btn{
         padding-top: 0.5vh;
+    }
+    #post-text,  #post-body{
+        font-size: 2vh;
+    }
+    .form_label{
+        font-size: 1vh;
     }
 }

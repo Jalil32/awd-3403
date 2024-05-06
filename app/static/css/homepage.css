@@ -28,15 +28,36 @@ main {
     padding: 12px 5px 10px 5px;
     font-family: "Josefin Sans", sans-serif;
     font-weight: 600;
+
+    display: block;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
-
 #feed {
-    padding-top: 10px;
-    padding-bottom: 10px; 
-    overflow:scroll;
+    padding: 2vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
     background-color: #FCCD5D;
-    border-radius: 10px;
+    border-radius: 0.6vw;
+    max-width: 100%;
+    display: block;
+}
+
+#post_container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 1vw;
+    border-color: #000000;
+    padding: 1.5vh;
+    margin-right: 1.5vh;
+    margin-left: 1.5vh;
+    background-color: #fdfdfd;
+    z-index: 10;
+    margin-bottom: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 #feed_stars{
@@ -48,15 +69,8 @@ main {
     width: 1em;
     font-size: 3vh;
     margin-bottom: 1.5vh;
-}
-
-#post_container {
-    border-radius: 10px;
-    border-color: #000000;
-    padding: 20px;
-    background-color: #fdfdfd;
-    z-index: 10;
-    margin-bottom: 10px;
+    padding: 10px; 
+    
 }
 
 #post_title {
@@ -71,6 +85,7 @@ main {
 #post_user, #post_title, #post_body {
     color: #D83934;
     font-family: "Josefin Sans", sans-serif;
+    margin-bottom: 0;
 }
 #post_user {
     font-size: 13.5pt;
@@ -88,8 +103,5 @@ main {
         float: none;
     }
 
-    #intro-text {
-       font-size: 5vw;
-    }
 
 }

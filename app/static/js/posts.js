@@ -63,6 +63,8 @@ function submitPost(event) {
             console.log(data);
             if (data.status === 'success') {
                 alert('Your post has been plated up!');
+                window.location.href = '/'; // Redirect to homepage
+                window.location.reload(); 
             } else {
                 // Failed to submit post
                 console.error('Post Submission failed:', data.message);
@@ -74,6 +76,7 @@ function submitPost(event) {
         .catch((error) => {
             console.error('Error:', error);
         });
+
 }
 
 

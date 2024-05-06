@@ -4,8 +4,7 @@ body {
     color: #e4e6eb;
     background-image: url(../../images/big.jpeg);
     background-attachment: fixed;
-    background-size: 100%;
-
+    background-size: cover;
 }
 
 .navbar{

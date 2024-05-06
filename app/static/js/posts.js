@@ -80,7 +80,7 @@ function submitPost(event) {
 function renderPosts(posts){
     const feedStart = document.getElementById('feed');
 
-    for(let i = 0; i < posts.length; i++){
+    for(let i = posts.length-1; i >= 0; i--){
         let div = document.createElement('div');
         div.setAttribute("id", "post_container");
 

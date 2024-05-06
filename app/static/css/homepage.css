@@ -8,7 +8,7 @@ main {
     text-align: center;
     font-family: "Josefin Sans", sans-serif;
     font-weight: 600;
-    padding: 0;
+    padding: 10px;
     border: none;
     background: none;
 }
@@ -93,6 +93,7 @@ main {
 }
 
 #post_pic {
+    min-width: 100%;
     max-width: 100%;
     padding-bottom: 1vh;
 }

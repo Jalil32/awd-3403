@@ -119,12 +119,10 @@ function renderPosts(posts){
         if (posts[i].image_path) {
             let imageElement = document.createElement('img');
             imageElement.setAttribute("id", "post_pic");
-            console.log("it worked?");
             imageElement.src = posts[i].image_path.split('app')[1];
             div.append(title, ratingContainer, imageElement, user);
         } else {
             div.append(title, ratingContainer, user);
-            console.log("it worked?");
         }
           
           feedStart.append(div);

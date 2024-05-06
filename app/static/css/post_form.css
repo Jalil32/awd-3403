@@ -215,15 +215,6 @@
 } 
 
 @media screen and (max-width: 600px) {
-    .navbar-brand {
-        font-size: 20pt;
-        padding: 12px 12.5px 0px 12.5px;
-    }
-    
-    .nav-list li {
-        float: none;
-    }
-
     #popup-title {
         justify-content: space-evenly;
         align-items: center;

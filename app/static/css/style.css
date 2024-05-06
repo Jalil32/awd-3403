@@ -46,6 +46,8 @@ body {
     padding: 12px 25px 0px 25px;
     font-weight: 900;
 }
+
+
 #nav-title {
     color: #D83934;
     padding-top: 10px;
@@ -55,8 +57,13 @@ body {
     line-height: normal;
 }
 
-/* Responsive adjustments */
+
 @media screen and (max-width: 600px) {
+    .navbar-brand {
+        font-size: 20pt;
+        padding: 12px 12.5px 0px 12.5px;
+    }
+    
     .nav-list li {
         float: none;
     }

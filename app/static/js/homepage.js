@@ -45,3 +45,17 @@ function toggleRating() {
         postBody.placeholder = "Leave a review!!";
     }
 }
+
+function goHome(){
+  window.location.href = '/';
+  window.location.reload(); 
+}
+
+function hamburgerBar() {
+  var x = document.getElementById("navList");
+  if (x.style.display === "none") {
+      x.style.display = "flex";
+  } else {
+      x.style.display = "none";
+  }
+}

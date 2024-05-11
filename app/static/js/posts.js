@@ -93,7 +93,7 @@ function renderPosts(posts){
 
         let ratingContainer = document.createElement('div');
         if(posts[i].rating){
-            ratingContainer.setAttribute("id", "feed_stars");
+            ratingContainer.setAttribute("id", "post_stars");
             let userRating = posts[i].rating;
             let stars = '';
             for(let j = 0; j < 5; j++){

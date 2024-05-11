@@ -130,7 +130,7 @@ def handle_login():
     # Generate a JWT token for the user
     access_token = create_access_token(identity=user.id)
 
-    response = make_response(jsonify({"status": "success", "username": user.username, "user-id": user.id, "message": "Signup successful!", "token": access_token}))
+    response = make_response(jsonify({"status": "success", "username": user.username, "user_id": user.id, "message": "Signup successful!", "token": access_token}))
     set_access_cookies(response, access_token)
 
     return response, 200

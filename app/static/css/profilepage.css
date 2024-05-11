@@ -40,3 +40,15 @@ body {
 .edit-profile:hover {
     background-color: #008f95;
 }
+
+.delete-profile:hover {
+    background-color: #008f95;
+}
+
+.delete-profile {
+    padding: 10px 20px;
+    background-color: #D83934;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}

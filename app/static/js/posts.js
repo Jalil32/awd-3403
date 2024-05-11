@@ -1,5 +1,6 @@
-window.onload = function postFeed() {
+let allPosts = [];
 
+window.onload = function postFeed() {
     fetch('/api/post', {
         method: 'GET',
     })
@@ -11,13 +12,12 @@ window.onload = function postFeed() {
         })
         .then((data) => {
             console.log(data);
-            renderPosts(data);
-            
+            allPosts = data;
+            renderPosts(allPosts);
         })
         .catch((error) => {
             console.error('Error:', error);
         });
-
 };
 
 function submitPost(event) {
@@ -64,7 +64,7 @@ function submitPost(event) {
             if (data.status === 'success') {
                 alert('Your post has been plated up!');
                 window.location.href = '/'; // Redirect to homepage
-                window.location.reload(); 
+                window.location.reload();
             } else {
                 // Failed to submit post
                 console.error('Post Submission failed:', data.message);
@@ -76,27 +76,42 @@ function submitPost(event) {
         .catch((error) => {
             console.error('Error:', error);
         });
-
 }
 
+function filterPosts() {
+    const searchText = document
+        .getElementById('searchInput')
+        .value.toLowerCase();
+    console.log('searching...', searchText);
+    const filteredPosts = allPosts.filter(
+        (post) =>
+            post.title.toLowerCase().includes(searchText) ||
+            post.body.toLowerCase().includes(searchText) ||
+            post.author.toLowerCase().includes(searchText),
+    );
+    console.log('Filtered posts:', filteredPosts);
+    renderPosts(filteredPosts);
+}
 
-function renderPosts(posts){
+function renderPosts(posts) {
+    console.log('rendering posts...');
     const feedStart = document.getElementById('feed');
+    feedStart.innerHTML = '';
 
-    for(let i = posts.length-1; i >= 0; i--){
+    for (let i = posts.length - 1; i >= 0; i--) {
         let div = document.createElement('div');
-        div.setAttribute("id", "post_container");
+        div.setAttribute('id', 'post_container');
 
         let title = document.createElement('h2');
-        title.setAttribute("id", "post_title");
-        title.textContent=posts[i].title;
+        title.setAttribute('id', 'post_title');
+        title.textContent = posts[i].title;
 
         let ratingContainer = document.createElement('div');
-        if(posts[i].rating){
-            ratingContainer.setAttribute("id", "feed_stars");
+        if (posts[i].rating) {
+            ratingContainer.setAttribute('id', 'feed_stars');
             let userRating = posts[i].rating;
             let stars = '';
-            for(let j = 0; j < 5; j++){
+            for (let j = 0; j < 5; j++) {
                 if (j < userRating) {
                     stars += '<span style="color: #FCCD5D;">★</span>';
                 } else {
@@ -107,26 +122,25 @@ function renderPosts(posts){
         }
 
         let user = document.createElement('p');
-        user.setAttribute("id", "post_user");
-        user.textContent=posts[i].author;
+        user.setAttribute('id', 'post_user');
+        user.textContent = posts[i].author;
 
         let body = document.createElement('p');
-        body.setAttribute("id", "post_body");
-        body.textContent=posts[i].body;
+        body.setAttribute('id', 'post_body');
+        body.textContent = posts[i].body;
         user.append(body);
-        
-  
+
         if (posts[i].image_path) {
             let imageElement = document.createElement('img');
-            imageElement.setAttribute("id", "post_pic");
-            console.log("it worked?");
+            imageElement.setAttribute('id', 'post_pic');
+            console.log('it worked?');
             imageElement.src = posts[i].image_path.split('app')[1];
             div.append(title, ratingContainer, imageElement, user);
         } else {
             div.append(title, ratingContainer, user);
-            console.log("it worked?");
+            console.log('it worked?');
         }
-          
-          feedStart.append(div);
-      }
+
+        feedStart.append(div);
+    }
 }

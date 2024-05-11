@@ -1,13 +1,12 @@
-
 main {
-    overflow-y: scroll
+    overflow-y: scroll;
 }
 
 #intro-text {
-    color: #D83934;
+    color: #d83934;
     font-size: 13.5pt;
     text-align: center;
-    font-family: "Josefin Sans", sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
     font-weight: 600;
     padding: 10px;
     border: none;
@@ -19,15 +18,14 @@ main {
     transform: scale(1.05);
 }
 
-
 #new-post {
     border-radius: 8px;
-    background: #FCCD5D;
-    color: #D83934;
+    background: #fccd5d;
+    color: #d83934;
     font-size: 14pt;
     text-align: center;
     padding: 12px 5px 10px 5px;
-    font-family: "Josefin Sans", sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
     font-weight: 600;
 
     display: block;
@@ -40,7 +38,7 @@ main {
     padding: 2vh;
     overflow-x: hidden;
     overflow-y: scroll;
-    background-color: #FCCD5D;
+    background-color: #fccd5d;
     border-radius: 0.6vw;
     max-width: 100%;
     display: block;
@@ -61,36 +59,35 @@ main {
     box-sizing: border-box;
 }
 
-#feed_stars{
+#feed_stars {
     display: flex;
     justify-content: space-between;
-    color: #FCCD5D;
+    color: #fccd5d;
     text-align: right;
     clear: both;
     width: 1em;
     font-size: 3vh;
     margin-bottom: 1.5vh;
-    padding: 5px 10px 5px 0px; 
-    
+    padding: 5px 10px 5px 0px;
 }
 
 #post_title {
-    color: #D83934;
-    font-family: "Josefin Sans", sans-serif;
+    color: #d83934;
+    font-family: 'Josefin Sans', sans-serif;
     font-weight: 500;
     font-size: 5vh;
     margin-top: 1.5vh;
     margin-bottom: 0vh;
-
 }
-#post_title, #post_body {
-    color: #D83934;
-    font-family: "Josefin Sans", sans-serif;
+#post_title,
+#post_body {
+    color: #d83934;
+    font-family: 'Josefin Sans', sans-serif;
     margin-bottom: 0;
 }
 #post_user {
     font-size: 13.5pt;
-    font-family: "Josefin Sans", sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
     margin-bottom: 0;
     align-items: center;
     color: #008f95;
@@ -107,10 +104,26 @@ main {
         font-size: 20pt;
         padding: 12px 12.5px 0px 12.5px;
     }
-    
+
     .nav-list li {
         float: none;
     }
+}
 
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    padding: 10px;
+}
 
+#searchInput {
+    color: black;
+    display: flex;
+    border: 3px solid #fccd5d;
+    padding: 10px;
+    border-radius: 10px;
+    width: 50%;
 }

@@ -59,8 +59,9 @@
                                 onclick="togglePopup()"
                                 class="close-button"
                             >
-                                 <p id="x_btn"> &times;
-                            <p></button>
+                                <p id="x_btn">&times;</p>
+                                <p></p>
+                            </button>
                         </h2>
                         <h2 id="post-text">
                             Review the latest dining experience you had in Perth
@@ -185,11 +186,20 @@
                     </div>
                 </div>
             </div>
-            <br />
+            <div class="search-bar">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search posts..."
+                    onkeyup="filterPosts()"
+                />
+            </div>
             <div class="row">
+
                 <div class="col-sm-3"></div>
                 <div id="feed" class="col-sm-6"></div>
                 <div class="col-sm-3"></div>
+
             </div>
         </main>
     </body>

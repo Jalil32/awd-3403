@@ -99,6 +99,7 @@ main {
     padding-bottom: 1vh;
 }
 
+
 @media screen and (max-width: 600px) {
     .navbar-brand {
         font-size: 20pt;
@@ -127,3 +128,4 @@ main {
     border-radius: 10px;
     width: 50%;
 }
+

@@ -18,9 +18,8 @@ class User(UserMixin, db.Model):
     username: so.Mapped[str] = so.mapped_column(sa.String(64), index=True, unique=True)
     email: so.Mapped[str] = so.mapped_column(sa.String(120), index=True, unique=True)
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256)) #remove nullable later
-
-    posts: so.WriteOnlyMapped['Post'] = so.relationship(back_populates='author')
-    comments: so.WriteOnlyMapped['Comment'] = so.relationship(back_populates='author')
+    posts: so.WriteOnlyMapped['Post'] = so.relationship('Post', back_populates='author')
+    comments: so.WriteOnlyMapped['Comment'] = so.relationship('Comment', back_populates='author')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -38,7 +37,7 @@ class Post(db.Model):
     timestamp: so.Mapped[datetime] = so.mapped_column(sa.DateTime(timezone=True), index=True, default=datetime.now(timezone.utc))
     user_id: so.Mapped[int] =so.mapped_column(sa.ForeignKey(User.id), index=True)
     rating: so.Mapped[int] = so.mapped_column(sa.Integer())
-    author: so.Mapped[User] = so.relationship(back_populates='posts')
+    author: so.Mapped[User] = so.relationship('User', back_populates='posts')
     image_path: so.Mapped[str] = so.mapped_column(sa.String(140), nullable=True)
     comments: so.Mapped[List['Comment']] = so.relationship('Comment', back_populates='post')
     def as_dict(self):
@@ -51,6 +50,7 @@ class Post(db.Model):
             "user_id": self.user_id,
             "rating": self.rating,
             "image_path": self.image_path,
+            "author": self.author.username,
             "comments": [comment.as_dict() for comment in self.comments]
         }
 

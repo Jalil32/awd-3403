@@ -52,8 +52,11 @@ def handle_post():
 
     # Validate user ID
     author = User.query.filter_by(id=user_id).first()
+    print("author:", author)
     if not author:
         return jsonify({"status": "error", "message": "User not found"}), 404
+    else:
+        author = author.username
 
     # Create new Post instance
     if image:
@@ -96,6 +99,8 @@ def get_posts():
         # Handle errors and send an appropriate error message
         return jsonify({"status": "error", "message": "An error occurred while retrieving posts: " + str(e)}), 500
 
+
+
 @routes.route("/api/login", methods=["POST"])
 def handle_login():
     """Checks users credentials and logs them into the application"""
@@ -113,6 +118,7 @@ def handle_login():
 
     # Find user by email
     user = User.query.filter_by(email=email).first()
+    print(user)
 
     # Validate user existence and password
     if not user or not check_password_hash(user.password_hash, password):
@@ -121,7 +127,7 @@ def handle_login():
     # Generate a JWT token for the user
     access_token = create_access_token(identity=user.id)
 
-    response = make_response(jsonify({"status": "success", "username": user.username, "user-id": user.id, "message": "Signup successful!", "token": access_token}))
+    response = make_response(jsonify({"status": "success", "username": user.username, "user_id": user.id, "message": "Signup successful!", "token": access_token}))
     set_access_cookies(response, access_token)
 
     return response, 200
@@ -187,6 +193,9 @@ def create_comment():
     post_id = data.get('post_id')
     comment_text = data.get('comment')
 
+    print(user_id)
+    print(post_id)
+
     # Validate that user and post exist
     user = db.session.query(User).filter(User.id == user_id).first()
     post = db.session.query(Post).filter(Post.id == post_id).first()
@@ -204,6 +213,8 @@ def create_comment():
 @jwt_required(True)
 def login_page():
     if get_jwt_identity():
+
+        # Generate JWT token upon successful signup
         return redirect(url_for('routes.homepage'))
 
     return render_template('login.html')
@@ -212,12 +223,11 @@ def login_page():
 @jwt_required()
 def homepage():
     user_id = get_jwt_identity()
-    print(user_id)
 
     user = User.query.get(user_id)
 
     if not user:
-        return jsonify({"status": "error", "message": "User not found"}), 404
+        return render_template('login.html')
 
     return render_template('home_page.html')
 

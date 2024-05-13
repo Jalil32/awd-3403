@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 import sqlalchemy as sa
 from app import db  # Import the database
-from app.models import User, Post  # Import your user model
+from app.models import User, Post, Comment  # Import your user model
 from app import jwt
 import json
 import os
@@ -84,20 +84,11 @@ def handle_post():
 def get_posts():
     """Retrieves all the posts to render on the front end."""
     try:
-        # Query all posts from the database
-        posts = Post.query.all()
+        # Query all posts from the database including comments
+        posts = Post.query.options(db.joinedload(Post.comments)).all()
 
-        # Serialize the posts data
-        posts_data = [{
-            'id': post.id,
-            'title': post.title,
-            'body': post.body,
-            'user_id': post.user_id,
-            'rating': post.rating,
-            'image_path': post.image_path if post.image_path else None,
-            'author': post.author.username, # Assuming the User model has a name field
-            
-        } for post in posts]
+        # Serialize the posts data including comments
+        posts_data = [post.as_dict() for post in posts] if posts else []
 
         # Return the serialized posts as JSON
         return jsonify(posts_data), 200
@@ -187,6 +178,27 @@ def handle_signup():
     set_access_cookies(response, access_token)
 
     return response, 200
+
+@routes.route("/api/comment", methods=['POST'])
+def create_comment():
+    print("commenting...")
+    data = request.get_json()
+    user_id = data.get('user_id')
+    post_id = data.get('post_id')
+    comment_text = data.get('comment')
+
+    # Validate that user and post exist
+    user = db.session.query(User).filter(User.id == user_id).first()
+    post = db.session.query(Post).filter(Post.id == post_id).first()
+    if not user or not post:
+        return jsonify({'error': 'Invalid user_id or post_id'}), 400
+
+    # Create a new comment
+    new_comment = Comment(user_id=user_id, post_id=post_id, comment=comment_text)
+    db.session.add(new_comment)
+    db.session.commit()
+
+    return jsonify({'message': 'Comment created successfully', 'comment': new_comment.as_dict()}), 201
 
 @routes.route("/login", methods=['GET'])
 @jwt_required(True)

@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 import sqlalchemy as sa
 from app import db  # Import the database
-from app.models import User, Post, Comment  # Import your user model
+from app.models import User, Post  # Import your user model
 from app import jwt
 import json
 import os
@@ -52,11 +52,8 @@ def handle_post():
 
     # Validate user ID
     author = User.query.filter_by(id=user_id).first()
-    print("author:", author)
     if not author:
         return jsonify({"status": "error", "message": "User not found"}), 404
-    else:
-        author = author.username
 
     # Create new Post instance
     if image:
@@ -87,19 +84,26 @@ def handle_post():
 def get_posts():
     """Retrieves all the posts to render on the front end."""
     try:
-        # Query all posts from the database including comments
-        posts = Post.query.options(db.joinedload(Post.comments)).all()
+        # Query all posts from the database
+        posts = Post.query.all()
 
-        # Serialize the posts data including comments
-        posts_data = [post.as_dict() for post in posts] if posts else []
+        # Serialize the posts data
+        posts_data = [{
+            'id': post.id,
+            'title': post.title,
+            'body': post.body,
+            'user_id': post.user_id,
+            'rating': post.rating,
+            'image_path': post.image_path if post.image_path else None,
+            'author': post.author.username, # Assuming the User model has a name field
+            
+        } for post in posts]
 
         # Return the serialized posts as JSON
         return jsonify(posts_data), 200
     except Exception as e:
         # Handle errors and send an appropriate error message
         return jsonify({"status": "error", "message": "An error occurred while retrieving posts: " + str(e)}), 500
-
-
 
 @routes.route("/api/login", methods=["POST"])
 def handle_login():
@@ -118,7 +122,6 @@ def handle_login():
 
     # Find user by email
     user = User.query.filter_by(email=email).first()
-    print(user)
 
     # Validate user existence and password
     if not user or not check_password_hash(user.password_hash, password):
@@ -127,7 +130,7 @@ def handle_login():
     # Generate a JWT token for the user
     access_token = create_access_token(identity=user.id)
 
-    response = make_response(jsonify({"status": "success", "username": user.username, "user_id": user.id, "message": "Signup successful!", "token": access_token}))
+    response = make_response(jsonify({"status": "success", "username": user.username, "user-id": user.id, "message": "Signup successful!", "token": access_token}))
     set_access_cookies(response, access_token)
 
     return response, 200
@@ -185,36 +188,10 @@ def handle_signup():
 
     return response, 200
 
-@routes.route("/api/comment", methods=['POST'])
-def create_comment():
-    print("commenting...")
-    data = request.get_json()
-    user_id = data.get('user_id')
-    post_id = data.get('post_id')
-    comment_text = data.get('comment')
-
-    print(user_id)
-    print(post_id)
-
-    # Validate that user and post exist
-    user = db.session.query(User).filter(User.id == user_id).first()
-    post = db.session.query(Post).filter(Post.id == post_id).first()
-    if not user or not post:
-        return jsonify({'error': 'Invalid user_id or post_id'}), 400
-
-    # Create a new comment
-    new_comment = Comment(user_id=user_id, post_id=post_id, comment=comment_text)
-    db.session.add(new_comment)
-    db.session.commit()
-
-    return jsonify({'message': 'Comment created successfully', 'comment': new_comment.as_dict()}), 201
-
 @routes.route("/login", methods=['GET'])
 @jwt_required(True)
 def login_page():
     if get_jwt_identity():
-
-        # Generate JWT token upon successful signup
         return redirect(url_for('routes.homepage'))
 
     return render_template('login.html')
@@ -223,11 +200,12 @@ def login_page():
 @jwt_required()
 def homepage():
     user_id = get_jwt_identity()
+    print(user_id)
 
     user = User.query.get(user_id)
 
     if not user:
-        return render_template('login.html')
+        return jsonify({"status": "error", "message": "User not found"}), 404
 
     return render_template('home_page.html')
 

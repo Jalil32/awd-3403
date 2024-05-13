@@ -7,7 +7,7 @@ main {
     color: #d83934;
     font-size: 13.5pt;
     text-align: center;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     font-weight: 600;
     padding: 10px;
     border: none;
@@ -26,7 +26,7 @@ main {
     font-size: 14pt;
     text-align: center;
     padding: 12px 5px 10px 5px;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     font-weight: 600;
 
     display: block;
@@ -74,7 +74,7 @@ main {
 
 #post_title {
     color: #d83934;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     font-weight: 500;
     font-size: 5vh;
     margin-top: 1.5vh;
@@ -83,12 +83,12 @@ main {
 #post_title,
 #post_body {
     color: #d83934;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     margin-bottom: 0;
 }
 #post_user {
     font-size: 13.5pt;
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     margin-bottom: 0;
     align-items: center;
     color: #008f95;
@@ -135,5 +135,31 @@ main {
     resize: none; /* Disables resizing of textarea */
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 600px) {
+    .navbar-brand {
+        font-size: 20pt;
+        padding: 12px 12.5px 0px 12.5px;
+    }
+
+    .nav-list li {
+        float: none;
+    }
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    padding: 10px;
+}
+
+#searchInput {
+    color: black;
+    display: flex;
+    border: 3px solid #fccd5d;
+    padding: 10px;
+    border-radius: 10px;
+    width: 50%;
 }

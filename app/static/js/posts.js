@@ -9,7 +9,8 @@ window.onload = function postFeed() {
             return response.json();
         })
         .then((data) => {
-            renderPosts(data);
+            allPosts = data;
+            renderPosts(allPosts);
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -123,7 +124,6 @@ function submitPost(event) {
             if (data.status === "success") {
                 alert("Your post has been plated up!");
                 window.location.href = "/"; // Redirect to homepage
-                window.location.reload();
             } else {
                 // Failed to submit post
                 console.error("Post Submission failed:", data.message);
@@ -137,14 +137,29 @@ function submitPost(event) {
         });
 }
 
+function filterPosts() {
+    const searchText = document
+        .getElementById("searchInput")
+        .value.toLowerCase();
+    console.log("searching...", searchText);
+    const filteredPosts = allPosts.filter(
+        (post) =>
+            post.title.toLowerCase().includes(searchText) ||
+            post.body.toLowerCase().includes(searchText) ||
+            post.author.toLowerCase().includes(searchText),
+    );
+    console.log("Filtered posts:", filteredPosts);
+    renderPosts(filteredPosts);
+}
+
 function renderPosts(posts) {
+    console.log("rendering posts...");
     const feedStart = document.getElementById("feed");
+    feedStart.innerHTML = "";
 
     for (let i = posts.length - 1; i >= 0; i--) {
-        console.log(posts[i]);
         let div = document.createElement("div");
         div.setAttribute("id", "post_container");
-        div.setAttribute("post_id", posts[i].id);
 
         let title = document.createElement("h2");
         title.setAttribute("id", "post_title");
@@ -156,10 +171,11 @@ function renderPosts(posts) {
             let userRating = posts[i].rating;
             let stars = "";
             for (let j = 0; j < 5; j++) {
-                stars +=
-                    j < userRating
-                        ? '<span style="color: #FCCD5D;">★</span>'
-                        : '<span style="color: #ccc;">★</span>';
+                if (j < userRating) {
+                    stars += '<span style="color: #FCCD5D;">★</span>';
+                } else {
+                    stars += '<span style="color: #ccc;">★</span>';
+                }
             }
             ratingContainer.innerHTML = stars;
         }

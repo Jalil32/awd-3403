@@ -145,5 +145,40 @@ input[type="submit"] {
 
 /*Toggling submit button colour change upon hover*/
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #c24539;
+}
+
+/*Signup link colouring*/
+#signupLink {
+    color: #008f95;
+}
+
+#signupLink:hover {
+    color: darkblue;
+}
+
+
+/* Adjusting for a mobile responsive design (for smaller screens) */
+@media screen and (max-width: 600px) {
+    
+    .container {
+        flex-direction: column; /* Stack items vertically instead of side-by-side*/
+        width: 100%;
+        background-position: -300px; /*Adjusting background for smaller screen*/
+
+    }
+
+    .welcome {
+        width: 100%;
+        padding: 0;
+    }
+
+    /* Re-adjusting signup form for mobile view? */
+    .signup {
+        margin-top: 20px; /* Reset margin */
+        width: 100%;
+        border-radius: 40px 40px 0px 0px; /* Changing rounded corners from left-right to top-bottom */
+        padding: 0;
+        padding-top: 20px;
+    }
 }

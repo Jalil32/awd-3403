@@ -67,9 +67,11 @@ function handleSubmitComment(event) {
             }
 
             const commentAuthor = document.createElement("strong");
+            commentAuthor.setAttribute("id", "comment_author");
             commentAuthor.textContent = data.comment.author + ": "; // Adjust according to the actual username
 
             const commentText = document.createElement("span");
+            commentText.setAttribute("id", "comment_text");
             commentText.textContent = commentData.comment;
 
             newCommentDiv.appendChild(commentAuthor);
@@ -207,9 +209,11 @@ function renderPosts(posts) {
                 commentDiv.setAttribute("id", "comment");
 
                 let commentAuthor = document.createElement("strong");
+                commentAuthor.setAttribute("id", "comment_author");
                 commentAuthor.textContent = comment.author + ": ";
 
                 let commentText = document.createElement("span");
+                commentText.setAttribute("id", "comment_text");
                 commentText.textContent = comment.comment;
 
                 commentDiv.appendChild(commentAuthor);
@@ -231,6 +235,8 @@ function renderPosts(posts) {
         textarea.setAttribute("id", "comment_input");
         textarea.placeholder = "Write a comment...";
         let submitButton = document.createElement("button");
+        submitButton.setAttribute("id", "submit_comment");
+            
         submitButton.type = "submit";
         submitButton.textContent = "Post";
         commentForm.appendChild(textarea);

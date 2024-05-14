@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/profilepage.css">
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        />
+    <title>User Profile</title>
+
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li>
+                    <h4 id="nav-title">HOME</h4>
+                    <h1 class="navbar-brand">Plating Perth</h1>
+                    <h4 id="nav-title">PROFILE</h4>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div id = "profile-info">My Profile:</div>
+        <div id = username-title>{{username}}</div>
+        <!-- <img class="profile-picture" src="" alt="Profile Picture">  -->
+
+        <div class = "form-cell">
+            <label for="username" class="label">Username:</label>
+            <input id="username" class="username" type="text" value={{username}} readonly>
+        </div>
+        <div class = "form-cell">
+            <label for="email" class="label">Email Address:</label>
+            <input id="email" class="email" type="text" value={{email}} readonly>
+        </div>
+
+        <!-- <div id ="username" class = "username">Username: {{username}}</div>
+        <div id ="email" class="email">Email Adress: {{email}}</div>
+        <div id ="bio" class="bio">Bio</div> -->
+
+        
+        <!-- <a class = "edit-bio" href="#">Edit Bio</a>
+        <a class="edit-profile" href="#">Edit Profile</a> -->
+        <a class="delete-profile" href="#">Delete Profile</a>
+
+    </div>
+</body>
+</html>

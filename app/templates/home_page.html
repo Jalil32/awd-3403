@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="../static/css/style.css" />
         <link rel="stylesheet" href="../static/css/homepage.css" />
         <link rel="stylesheet" href="../static/css/post_form.css" />
-        <link rel="stylesheet" href="../static/css/posts.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -23,8 +22,6 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
-        <script src="../static/js/homepage.js"></script>
-        <script src="../static/js/posts.js"></script>
         <title>My Homepage</title>
     </head>
     <body>
@@ -34,7 +31,9 @@
                     <li>
                         <h4 id="nav-title">HOME</h4>
                         <h1 class="navbar-brand">Plating Perth</h1>
-                        <a href="/profile" id="profileButton"><h4 id="nav-title">PROFILE</h4></a>
+                        <a href="/profile" id="profileButton"
+                            ><h4 id="nav-title">PROFILE</h4></a
+                        >
                     </li>
                 </ul>
             </nav>
@@ -187,6 +186,7 @@
                     </div>
                 </div>
             </div>
+            <button id="logoutButton">Log out</button>
             <div class="search-bar">
                 <input
                     type="text"
@@ -196,12 +196,12 @@
                 />
             </div>
             <div class="row">
-
                 <div class="col-sm-3"></div>
                 <div id="feed" class="col-sm-6"></div>
                 <div class="col-sm-3"></div>
-
             </div>
         </main>
     </body>
+    <script src="../static/js/homepage.js"></script>
+    <script src="../static/js/posts.js"></script>
 </html>

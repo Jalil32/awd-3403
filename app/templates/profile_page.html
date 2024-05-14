@@ -27,11 +27,26 @@
     </header>
 
     <div class="container">
-        <img class="profile-picture" src="" alt="Profile Picture"> 
-        <div class="username">Username</div>
-        <div class="bio">bio description...</div>
+        <div id = "profile-info">My Profile:</div>
+        <div id = username-title>{{username}}</div>
+        <!-- <img class="profile-picture" src="" alt="Profile Picture">  -->
+
+        <div class = "form-cell">
+            <label for="username" class="label">Username:</label>
+            <input id="username" class="username" type="text" value={{username}} readonly>
+        </div>
+        <div class = "form-cell">
+            <label for="email" class="label">Email Address:</label>
+            <input id="email" class="email" type="text" value={{email}} readonly>
+        </div>
+
+        <!-- <div id ="username" class = "username">Username: {{username}}</div>
+        <div id ="email" class="email">Email Adress: {{email}}</div>
+        <div id ="bio" class="bio">Bio</div> -->
+
         
-        <a class="edit-profile" href="#">Edit Profile</a>
+        <!-- <a class = "edit-bio" href="#">Edit Bio</a>
+        <a class="edit-profile" href="#">Edit Profile</a> -->
         <a class="delete-profile" href="#">Delete Profile</a>
 
     </div>

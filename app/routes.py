@@ -209,6 +209,25 @@ def homepage():
 
     return render_template('home_page.html')
 
+#route for profile page
+@routes.route("/profile", methods=['GET'])
+@jwt_required()
+def profile_page():
+    # get user id from token
+    user_id = get_jwt_identity()
+
+    # find user is database using id
+    user = User.query.get(user_id)
+
+    if not user:
+        return jsonify({"status": "error", "message": "User not found"}), 404
+
+    username = user.username
+    email = user.email
+
+    # render the profile page with user's username and email
+    return render_template('profile_page.html', username=username, email=email)
+
 @jwt.unauthorized_loader
 def handle_missing_jwt_token(error):
     return redirect(url_for('routes.login_page'))

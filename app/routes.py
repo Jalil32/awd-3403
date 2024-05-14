@@ -8,7 +8,6 @@ import sqlalchemy as sa
 from app import db  # Import the database
 from app.models import User, Post, Comment  # Import your user model
 from app import jwt
-import json
 import os
 
 
@@ -52,11 +51,9 @@ def handle_post():
 
     # Validate user ID
     author = User.query.filter_by(id=user_id).first()
-    print("author:", author)
+
     if not author:
         return jsonify({"status": "error", "message": "User not found"}), 404
-    else:
-        author = author.username
 
     # Create new Post instance
     if image:

@@ -24,6 +24,7 @@ function handleSubmitComment(event) {
     const textarea = form.querySelector("textarea");
     const postContainer = form.closest("#post_container");
     const postId = postContainer.getAttribute("post_id");
+    console.log(postId);
 
     const commentData = {
         user_id: localStorage.getItem("user_id"), // Assuming user_id is stored in localStorage
@@ -60,7 +61,11 @@ function handleSubmitComment(event) {
             newCommentDiv.setAttribute("id", "comment");
 
             let noComment = document.getElementById("no-comment");
-            noComment.textContent = "";
+            console.log("nocomment", noComment.textContent);
+
+            if (noComment) {
+                noComment.textContent = "";
+            }
 
             const commentAuthor = document.createElement("strong");
             commentAuthor.textContent = data.comment.author + ": "; // Adjust according to the actual username
@@ -160,6 +165,7 @@ function renderPosts(posts) {
     for (let i = posts.length - 1; i >= 0; i--) {
         let div = document.createElement("div");
         div.setAttribute("id", "post_container");
+        div.setAttribute("post_id", posts[i].id);
 
         let title = document.createElement("h2");
         title.setAttribute("id", "post_title");

@@ -61,7 +61,6 @@ function handleSubmitComment(event) {
             newCommentDiv.setAttribute("id", "comment");
 
             let noComment = document.getElementById("no-comment");
-            console.log("nocomment", noComment.textContent);
 
             if (noComment) {
                 noComment.textContent = "";

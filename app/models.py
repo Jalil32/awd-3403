@@ -80,7 +80,3 @@ class Comment(db.Model):
 
     def __repr__(self):
         return f'<Comment {self.comment}>'
-
-# @login.user_loader
-# def load_user(id):
-#     return db.session.get(User, int(id))

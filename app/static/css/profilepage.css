@@ -17,24 +17,24 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19)
 }
-/* .profile-picture {
+.profile-picture {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     margin-bottom: 20px;
     color: #D83934;
-} */
+}
 .username {
     display: flex;
     /* font-weight: bold; */
     margin-bottom: 10px;
     color: #D83934;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .email {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     margin-bottom: 10px;
     color: #D83934;
 }
@@ -69,6 +69,7 @@ body {
     text-decoration: none;
     border-radius: 5px;
     text-align: center;
+    margin-top: 20px;
 }
 
 .edit-bio {
@@ -111,11 +112,36 @@ body {
     /* justify-content: center; */
 }
 
+.user-post {
+    color: black;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19)
+
+}
+
+/* #post_container {
+    display: flex;
+    /* justify-content: center; */
+    /* flex-direction: column;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fdfdfd00; */
+    /* border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19) */
+/* 
+} */ 
+
 /* mobile responsivness for smaller screens
 making profile page box size smaller */
 @media screen and (max-width: 600px) {
 
 .container {
+    display: flex;
     width: 85%;
+    align-items: center;
 }
 }

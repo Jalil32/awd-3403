@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/profilepage.css">
     <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/homepage.css"/>
     <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
@@ -31,18 +32,18 @@
         <div id = username-title>{{username}}</div>
         <!-- <img class="profile-picture" src="" alt="Profile Picture">  -->
 
-        <div class = "form-cell">
+        <!-- <div class = "form-cell">
             <label for="username" class="label">Username:</label>
             <input id="username" class="username" type="text" value={{username}} readonly>
         </div>
         <div class = "form-cell">
             <label for="email" class="label">Email Address:</label>
             <input id="email" class="email" type="text" value={{email}} readonly>
-        </div>
+        </div> -->
 
-        <!-- <div id ="username" class = "username">Username: {{username}}</div>
+        <div id ="username" class = "username">Username: {{username}}</div>
         <div id ="email" class="email">Email Adress: {{email}}</div>
-        <div id ="bio" class="bio">Bio</div> -->
+        <!-- <div id ="bio" class="bio">Bio</div> -->
 
         
         <!-- <a class = "edit-bio" href="#">Edit Bio</a>
@@ -50,5 +51,7 @@
         <a class="delete-profile" href="#">Delete Profile</a>
 
     </div>
+    <div id="user-posts-container"></div>
+    <script src="../static/js/profile_page.js"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@ SEND_FOLDER = '../app/images'
 # Create a blueprint for organizing routes
 routes = Blueprint("routes", __name__)  # Blueprint name and module name
 
-# In-memory token blacklist (for simplicity; use a persistent store in production)
+# In-memory token blacklist
 token_blacklist = set()
 
 # Add the revoked token to the blacklist
@@ -25,6 +25,15 @@ token_blacklist = set()
 def check_if_token_in_blacklist(jwt_header, jwt_payload):
     jti = jwt_payload['jti']
     return jti in token_blacklist
+
+@jwt.expired_token_loader
+def expired_token_callback(jwt_header, jwt_payload):
+    # Redirect to the login page
+    return render_template('login.html')
+
+@jwt.unauthorized_loader
+def handle_missing_jwt_token(error):
+    return render_template('login.html')
 
 @routes.route("/api/logout", methods=["DELETE"])
 @jwt_required()
@@ -45,6 +54,7 @@ def uploaded_file(filename):
     return send_from_directory(SEND_FOLDER , filename)
 
 @routes.route("/api/post", methods=["POST"])
+@jwt_required()
 def handle_post():
     """Creates a post in the database."""
 
@@ -103,6 +113,7 @@ def handle_post():
     return jsonify(response), 201
 
 @routes.route("/api/post", methods=["GET"])
+@jwt_required()
 def get_posts():
     """Retrieves all the posts to render on the front end."""
     try:
@@ -270,8 +281,3 @@ def profile_page():
 
     # render the profile page with user's username and email
     return render_template('profile_page.html', username=username, email=email)
-
-@jwt.unauthorized_loader
-def handle_missing_jwt_token(error):
-    print("rerouted")
-    return render_template('login.html')

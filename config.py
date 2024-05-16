@@ -14,3 +14,7 @@ class Config:
     JWT_ACCESS_COOKIE_PATH = '/'
     UPLOAD_FOLDER = 'app/images'
     JWT_COOKIE_CSRF_PROTECT = False
+
+class TestConfig:
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'

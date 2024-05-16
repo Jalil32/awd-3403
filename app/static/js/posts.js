@@ -236,7 +236,7 @@ function renderPosts(posts) {
         textarea.placeholder = "Write a comment...";
         let submitButton = document.createElement("button");
         submitButton.setAttribute("id", "submit_comment");
-            
+
         submitButton.type = "submit";
         submitButton.textContent = "Post";
         commentForm.appendChild(textarea);

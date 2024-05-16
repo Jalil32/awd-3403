@@ -73,8 +73,6 @@ main {
 }
 
 #post_title {
-    color: #d83934;
-    font-family: "Josefin Sans", sans-serif;
     font-weight: 500;
     font-size: 5vh;
     margin-top: 1.5vh;
@@ -86,6 +84,11 @@ main {
     font-family: "Josefin Sans", sans-serif;
     margin-bottom: 0;
 }
+
+#post_body {
+    font-size: 2.5vh;
+}
+
 #post_user {
     font-size: 13.5pt;
     font-family: "Josefin Sans", sans-serif;
@@ -95,12 +98,14 @@ main {
 }
 
 #post_pic {
-    min-width: 100%;
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     padding-bottom: 1vh;
 }
 
 #comments_container {
+    font-family: "Josefin Sans", sans-serif;
     color: black;
     margin-top: 20px;
     background-color: #fff;
@@ -110,22 +115,30 @@ main {
 
 #comment {
     padding: 5px;
+    font-family: "Josefin Sans", sans-serif;
     border-bottom: 1px solid #ddd;
 }
+.h3, .comment_author, .comment_text, .no-comment, .submit_comment {
+    font-family: "Josefin Sans", sans-serif;
+}
+
 
 #comment:last-child {
+    font-family: "Josefin Sans", sans-serif;
     border-bottom: none;
 }
 
 #comment strong {
-    color: #0056b3;
+    color: #008f95;
 }
 
 #comment_form {
+    font-family: "Josefin Sans", sans-serif;
     padding: 10px 0;
 }
 
 #comment_input {
+    font-family: "Josefin Sans", sans-serif;
     width: 100%;
     padding: 8px;
     margin-top: 5px;

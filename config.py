@@ -9,8 +9,12 @@ class Config:
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHMEY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = "your_secret_key_here"
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=1)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=30)
     JWT_TOKEN_LOCATION = ["cookies"]
-    JWT_COOKIE_NAME = "jwtToken"
     JWT_ACCESS_COOKIE_PATH = '/'
     UPLOAD_FOLDER = 'app/images'
+    JWT_COOKIE_CSRF_PROTECT = False
+
+class TestConfig:
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'

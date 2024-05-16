@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, make_response, render_template, redirect, url_for
 from flask import send_from_directory
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies, verify_jwt_in_request, get_jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
@@ -17,12 +17,44 @@ SEND_FOLDER = '../app/images'
 # Create a blueprint for organizing routes
 routes = Blueprint("routes", __name__)  # Blueprint name and module name
 
+# In-memory token blacklist
+token_blacklist = set()
+
+# Add the revoked token to the blacklist
+@jwt.token_in_blocklist_loader
+def check_if_token_in_blacklist(jwt_header, jwt_payload):
+    jti = jwt_payload['jti']
+    return jti in token_blacklist
+
+@jwt.expired_token_loader
+def expired_token_callback(jwt_header, jwt_payload):
+    # Redirect to the login page
+    return render_template('login.html')
+
+@jwt.unauthorized_loader
+def handle_missing_jwt_token(error):
+    return render_template('login.html')
+
+@routes.route("/api/logout", methods=["DELETE"])
+@jwt_required()
+def logout():
+    try:
+        jti = get_jwt()["jti"]
+        token_blacklist.add(jti)
+        response = jsonify({'message': 'Logout successful'})
+        unset_jwt_cookies(response)
+        return response
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
 @routes.route('/images/<filename>')
 def uploaded_file(filename):
     print("sending image...")
     return send_from_directory(SEND_FOLDER , filename)
 
 @routes.route("/api/post", methods=["POST"])
+@jwt_required()
 def handle_post():
     """Creates a post in the database."""
 
@@ -81,6 +113,7 @@ def handle_post():
     return jsonify(response), 201
 
 @routes.route("/api/post", methods=["GET"])
+@jwt_required()
 def get_posts():
     """Retrieves all the posts to render on the front end."""
     try:
@@ -179,10 +212,12 @@ def handle_signup():
 
     response = make_response(jsonify({"status": "success", "message": "Signup successful!", "username": username, "user_id": new_user.id, "token": access_token}))
     set_access_cookies(response, access_token)
+    return response, 200
 
     return response, 200
 
 @routes.route("/api/comment", methods=['POST'])
+@jwt_required()
 def create_comment():
     print("commenting...")
     data = request.get_json()
@@ -207,7 +242,7 @@ def create_comment():
     return jsonify({'message': 'Comment created successfully', 'comment': new_comment.as_dict()}), 201
 
 @routes.route("/login", methods=['GET'])
-@jwt_required(True)
+@jwt_required()
 def login_page():
     if get_jwt_identity():
 
@@ -217,7 +252,7 @@ def login_page():
     return render_template('login.html')
 
 @routes.route("/", methods=['GET'])
-@jwt_required()
+@jwt_required(True)
 def homepage():
     user_id = get_jwt_identity()
 
@@ -246,7 +281,3 @@ def profile_page():
 
     # render the profile page with user's username and email
     return render_template('profile_page.html', username=username, email=email)
-
-@jwt.unauthorized_loader
-def handle_missing_jwt_token(error):
-    return redirect(url_for('routes.login_page'))

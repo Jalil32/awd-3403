@@ -1,3 +1,4 @@
+
 body {
     color: #D83934;
     margin: 0;
@@ -7,9 +8,11 @@ body {
 }
 
 .container {
-    display: flex;
     /* justify-content: center; */
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    /* flex-direction: column; */
+    align-items: stretch;
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -17,6 +20,16 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19)
 }
+
+.user-info-container {
+    width: 220px;
+    flex-direction: column;
+    float: left;
+    display: flex;
+    flex: 1;
+    /* background-color: yellow; */
+}
+
 .profile-picture {
     width: 100px;
     height: 100px;
@@ -38,9 +51,23 @@ body {
     margin-bottom: 10px;
     color: #D83934;
 }
+
 .bio {
     margin-bottom: 20px;
     color: #D83934;
+}
+
+#user-post-container {
+    width: 50%;
+    flex: 1;
+    flex-direction: column !important;
+    height: 70%;
+    background-color: rgb(255, 25, 0) !important;
+    float: right;
+}
+
+#prev-post-txt {
+    color: black;
 }
 
 .edit-profile {
@@ -70,6 +97,7 @@ body {
     border-radius: 5px;
     text-align: center;
     margin-top: 20px;
+    width: 150px;
 }
 
 .edit-bio {

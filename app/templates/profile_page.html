@@ -28,30 +28,19 @@
     </header>
 
     <div class="container">
-        <div id = "profile-info">My Profile:</div>
-        <div id = username-title>{{username}}</div>
-        <!-- <img class="profile-picture" src="" alt="Profile Picture">  -->
-
-        <!-- <div class = "form-cell">
-            <label for="username" class="label">Username:</label>
-            <input id="username" class="username" type="text" value={{username}} readonly>
-        </div>
-        <div class = "form-cell">
-            <label for="email" class="label">Email Address:</label>
-            <input id="email" class="email" type="text" value={{email}} readonly>
-        </div> -->
-
-        <div id ="username" class = "username">Username: {{username}}</div>
-        <div id ="email" class="email">Email Adress: {{email}}</div>
-        <!-- <div id ="bio" class="bio">Bio</div> -->
-
         
-        <!-- <a class = "edit-bio" href="#">Edit Bio</a>
-        <a class="edit-profile" href="#">Edit Profile</a> -->
+        <div class="user-info-container">
+            <div id = "profile-info">Hey {{username}}:</div>
+            <div id ="username" class = "username">Username: {{username}}</div>
+            <div id ="email" class="email">Email: {{email}}</div>
+        </div>
+        <div id="user-posts-container">
+            <div id="prev-post-txt">Previous posts:</div>
+        </div>
+
         <a class="delete-profile" href="#">Delete Profile</a>
 
     </div>
-    <div id="user-posts-container"></div>
     <script src="../static/js/profile_page.js"></script>
 </body>
 </html>

@@ -162,6 +162,8 @@ input[type="submit"]:hover {
 @media screen and (max-width: 600px) {
     
     .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         flex-direction: column; /* Stack items vertically instead of side-by-side*/
         width: 100%;
         background-position: -300px; /*Adjusting background for smaller screen*/

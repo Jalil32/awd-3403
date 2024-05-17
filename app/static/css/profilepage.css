@@ -59,6 +59,8 @@ body {
 
 #user-post-container {
     width: 50%;
+    display: grid;
+    columns: 1fr 2fr;
     flex: 1;
     flex-direction: column !important;
     height: 70%;

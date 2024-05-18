@@ -24,7 +24,7 @@
         <nav class="navbar">
             <h1 class="navbar-brand">Plating Perth</h1>
             <button class="navbar-toggler" onclick="toggleMenu()">
-                <span class="fa fa-bars"></span>
+                <span class="navbar-toggler-icon">&#9776;</span>
             </button>
             <ul class="nav-list">
                 <li><a href="/home" id="nav-home">HOME</a></li>
@@ -39,7 +39,7 @@
                     <div class="container">
                     <div class="row" style="margin:0px">
                     <div class="col-sm-4" id="user-info-container">
-                        <div id = "profile-info">Hey {{username}}:</div>
+                        <div id = "profile-info">Hey {{username}}!</div>
                         <div id ="username" class = "username">Username: {{username}}</div>
                         <div id ="email" class="email">Email: {{email}}</div>
                         <button id="logoutButton">Log out</button>
@@ -56,5 +56,6 @@
     
 </main>
     <script src="../static/js/profile_page.js"></script>
+    <script src="../static/js/script.js"></script>
 </body>
 </html>

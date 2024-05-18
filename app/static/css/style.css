@@ -70,15 +70,23 @@ body {
     margin: 0;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
+
+    .navbar-brand {
+        margin-top: 10px;
+    }
+
     .navbar-toggler {
         display: block;
+        align-items: center;
         color: #D83934;
+        padding: 0px;
     }
 
     .nav-list {
         display: none;
         flex-direction: column;
+        align-items: center;
         width: 100%;
         position: absolute;
         top: 60px;
@@ -101,11 +109,8 @@ body {
     }
 
     .nav-list.active {
+        margin-top: 2vh;
         display: flex;
     }
 
-    /* Ensure the main content is pushed down when the navbar is active */
-    .nav-open ~ main {
-        margin-top: 200px; /* Adjust this value based on the height of your navbar */
-    }
 }

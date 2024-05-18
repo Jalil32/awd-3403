@@ -1,5 +1,5 @@
-
 body {
+    padding-top: 100px;
     color: #D83934;
     margin: 0;
     padding: 0;
@@ -10,22 +10,31 @@ body {
 .container {
     /* justify-content: center; */
     padding-top: 4vh;
-    overflow-x: hidden;
-    overflow-y: scroll;
     background-color: #fccd5d;
     border-radius: 0.6vw;
     max-width: 100%;
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    height: 87vh;
+    overflow: hidden;
 }
 
 #user-info-container {
-    width: 220px;
-    height: max-content;
+    width: calc(30% -10px);
     flex-direction: column;
     float: left;
     display: flex;
     flex: 1;
+    overflow: auto;
+    overflow-y: scroll;
     /* background-color: yellow; */
+}
+
+#user-posts-container {
+    width: calc(70% -10px);
+    height: 100%;
+    float: right;
+    overflow-y: scroll;
 }
 
 .profile-picture {
@@ -37,7 +46,6 @@ body {
 }
 .username {
     display: flex;
-    /* font-weight: bold; */
     margin-bottom: 10px;
     color: #D83934;
     /* justify-content: center; */
@@ -53,16 +61,6 @@ body {
 .bio {
     margin-bottom: 20px;
     color: #D83934;
-}
-
-
-#user-post-container {
-    width: 100%;
-    display: grid;
-    columns: 1fr 2fr;
-    flex-direction: column !important;
-    height: 70%;
-    background-color: #D83934 !important;
 }
 
 #prev-post-txt {
@@ -156,16 +154,45 @@ body {
     max-width: 100%;
     background-color: #fdfdfd00;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19)  
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    margin-bottom: 20px;
 } 
 
 /* mobile responsivness for smaller screens
 making profile page box size smaller */
 @media screen and (max-width: 600px) {
 
-.container {
-    display: flex;
-    width: 85%;
-    align-items: center;
-}
+
+    .container {
+        display: flex;
+        width: 85%;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 4vh;
+        background-color: #fccd5d;
+        border-radius: 0.6vw;
+        max-width: 100%;
+        display: flex;
+        justify-content: space-between;
+        height: 87vh;
+        overflow: hidden;
+    }
+
+    #user-info-container {
+        width: calc(30% -10px);
+        flex-direction: column;
+        float: top;
+        display: flex;
+        flex: 1;
+        overflow-y: scroll;
+        /* background-color: yellow; */
+    }
+    
+    #user-posts-container {
+        width: calc(70% -10px);
+        height: 100%;
+        float: right;
+        overflow-y: scroll;
+    }
+
 }

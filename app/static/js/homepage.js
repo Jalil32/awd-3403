@@ -1,39 +1,3 @@
-let prevScrollPos = window.scrollY;
-
-window.addEventListener("scroll", function () {
-    // current scroll position
-    const currentScrollPos = window.scrollY;
-
-    if (prevScrollPos > currentScrollPos) {
-        // user has scrolled up
-        document.querySelector(".navbar").classList.add("show");
-    } else {
-        // user has scrolled down
-        document.querySelector(".navbar").classList.remove("show");
-    }
-
-    // update previous scroll position
-    prevScrollPos = currentScrollPos;
-});
-
-document.getElementById("logoutButton").addEventListener("click", async () => {
-    try {
-        const response = await fetch("/api/logout", {
-            method: "DELETE",
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            // Redirect to login page or perform other actions after successful logout
-            window.location.href = "/"; // Redirect to homepage
-        } else {
-            alert("Logout failed");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred");
-    }
-});
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("intro-text").textContent =
@@ -66,24 +30,4 @@ function toggleRating() {
         upload.style.display = "block";
         postBody.placeholder = "Leave a review!!";
     }
-}
-
-function goHome() {
-    window.location.href = "/";
-    window.location.reload();
-}
-
-function hamburgerBar() {
-    var x = document.getElementById("navList");
-    if (x.style.display === "none") {
-        x.style.display = "flex";
-    } else {
-        x.style.display = "none";
-    }
-}
-
-
-function toggleMenu() {
-    const navList = document.querySelector('.nav-list');
-    navList.classList.toggle('active');
 }

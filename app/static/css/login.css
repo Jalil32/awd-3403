@@ -42,12 +42,13 @@ form {
     background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg'); /* background image URL */
     background-size: cover; /* Cover the entire background */
     background-position: -275px center;
+    border-radius: 40px 0px 0px 0px;
 }
 
 /* Formatting right-side signup container, with rounded corners */
 .signup {
     z-index: 1;
-    color: #c24539;
+    color: #d83934;
     background-color: #ffffff;
     padding: 20px;
     display: flex;
@@ -55,7 +56,7 @@ form {
     align-items: center;
     flex-direction: column;
     width: 50%;
-    border-radius: 40px 0px 0px 40px;
+    border-radius: 40px 0px 0px 0px;
 }
 
 /* Login header above form */
@@ -67,6 +68,7 @@ align-items: center; /* Center vertically */
 
 .welcome h1 {
     color: black;
+    font-weight: 900;
     justify-content: center;
 }
 
@@ -131,21 +133,21 @@ input[type="text"], input[type="password"], input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #FDFDFD;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
 input[type="submit"] {
-    background-color: #e24f42;
-    color: white;
+    background-color: #d83934;
+    color: #FDFDFD;
     cursor: pointer;
-    border: #e24f42;
+    border: #d83934;
 }
 
 /*Toggling submit button colour change upon hover*/
 input[type="submit"]:hover {
-    background-color: #c24539;
+    background-color: #d83934;
 }
 
 /*Signup link colouring*/
@@ -154,7 +156,7 @@ input[type="submit"]:hover {
 }
 
 #signupLink:hover {
-    color: darkblue;
+    color: #008f95;
 }
 
 
@@ -162,23 +164,45 @@ input[type="submit"]:hover {
 @media screen and (max-width: 600px) {
     
     .container {
+        background-image: url("../../images/pexels-photo-1640774.jpeg");
         flex-direction: column; /* Stack items vertically instead of side-by-side*/
         width: 100%;
-        background-position: -300px; /*Adjusting background for smaller screen*/
+        overflow-y: scroll;
 
     }
-
     .welcome {
         width: 100%;
         padding: 0;
+        text-shadow: 10px 10px 10px #FDFDFD;
+    }
+
+    #intro_text {
+       color: #2c2c2c;
+    }
+
+    
+    h1 {
+        margin-bottom: 0px;
     }
 
     /* Re-adjusting signup form for mobile view? */
     .signup {
-        margin-top: 20px; /* Reset margin */
+        margin-top: 20px; 
+        margin-bottom: 0px;
         width: 100%;
-        border-radius: 40px 40px 0px 0px; /* Changing rounded corners from left-right to top-bottom */
+        height: fit-content;
+        border-radius: 3vh 0px 3vh 0px; /* Changing rounded corners from left-right to top-bottom */
         padding: 0;
         padding-top: 20px;
+    }
+
+    form {
+        padding: 2vw;
+        width:auto;
+    }
+
+    #title, #intro_text {
+        font-weight: 900;
+        padding-top: 4vh;
     }
 }

@@ -88,7 +88,6 @@ function handleSubmitComment(event) {
 
 function submitPost(event) {
     event.preventDefault();
-    console.log("submitting post");
 
     let reviewBtn = document.getElementById("Review");
     let postData = new FormData();
@@ -128,19 +127,36 @@ function submitPost(event) {
         .then((data) => {
             console.log(data);
             if (data.status === "success") {
-                alert("Your post has been plated up!");
-                window.location.href = "/"; // Redirect to homepage
+                showAlert("Post Successful!", "Your post has been plated up!");
+                
             } else {
                 // Failed to submit post
                 console.error("Post Submission failed:", data.message);
-                alert(
-                    "Sorry! Something went wrong, please refresh and try again.",
-                );
+                showAlert("Post Unsuccessful", "Sorry! Something went wrong, please refresh and try again.");
             }
         })
         .catch((error) => {
             console.error("Error:", error);
         });
+}
+
+function showAlert(title, message) {
+    let popup = document.getElementById("popupOverlay");
+    popup.innerHTML = "";
+    const alertBox = document.createElement('div');
+    alertBox.className = 'alert_box';
+    alertBox.innerHTML = `
+      <h2>${title}</h2>
+      <p>${message}</p>
+      <button class="btn_okay" onclick='submitRemove()'>Okay!</button>
+    `;
+    popup.appendChild(alertBox);
+  }
+
+function submitRemove() {
+    let popup = document.getElementById("popupOverlay");
+    document.body.remove(popup);
+    window.location.href = "/"
 }
 
 function filterPosts() {

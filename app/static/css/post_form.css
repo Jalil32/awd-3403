@@ -214,6 +214,47 @@
     opacity: 1; 
 } 
 
+.alert_box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FCCD5D;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #D83934; 
+    color: #fdfdfd;
+    font-size: 12pt;
+    font-family: "Josefin Sans", sans-serif;
+    align-items: center;
+  }
+
+  .btn_okay{
+    background-color: #FCCD5D; 
+    color: #fdfdfd;
+    font-size: 12pt;
+    border: none; 
+    border-radius: 8px; 
+    padding: 12px 24px;
+    border-radius: 8px; 
+    width: 100%;
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
+  }
+
+  .btn_okay:hover {
+    background-color: #008f95; 
+    color: #fdfdfd;
+    font-size: 12pt;
+  }
+
+  #hide{
+    color: #D83934;
+    background-color: #D83934;
+    border: none;
+  }
+
 @media screen and (max-width: 600px) {
     #popup-title {
         justify-content: space-evenly;

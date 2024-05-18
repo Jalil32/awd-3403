@@ -16,24 +16,6 @@ window.addEventListener("scroll", function () {
     prevScrollPos = currentScrollPos;
 });
 
-document.getElementById("logoutButton").addEventListener("click", async () => {
-    try {
-        const response = await fetch("/api/logout", {
-            method: "DELETE",
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            // Redirect to login page or perform other actions after successful logout
-            window.location.href = "/"; // Redirect to homepage
-        } else {
-            alert("Logout failed");
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred");
-    }
-});
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("intro-text").textContent =

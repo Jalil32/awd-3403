@@ -159,7 +159,6 @@ function filterPosts() {
 }
 
 function renderPosts(posts) {
-    console.log("rendering posts...");
     const feedStart = document.getElementById("feed");
     feedStart.innerHTML = "";
 

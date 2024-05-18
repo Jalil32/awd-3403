@@ -130,7 +130,6 @@ def get_posts():
         return jsonify({"status": "error", "message": "An error occurred while retrieving posts: " + str(e)}), 500
 
 
-
 @routes.route("/api/login", methods=["POST"])
 def handle_login():
     """Checks users credentials and logs them into the application"""
@@ -281,3 +280,25 @@ def profile_page():
 
     # render the profile page with user's username and email
     return render_template('profile_page.html', username=username, email=email)
+
+
+
+@routes.route("/api/post/<int:user_id>", methods=["GET"])
+@jwt_required()
+def get_posts_for_profile(user_id):
+    """Retrieves all the posts to render on the front end."""
+    print(user_id)
+    try:
+        # Query all posts from the database including comments
+        posts = Post.query.filter_by(user_id=user_id).options(db.joinedload(Post.comments)).all()
+
+        # Serialize the posts data including comments
+        posts_data = [post.as_dict() for post in posts] if posts else []
+
+        # Return the serialized posts as JSON
+        return jsonify(posts_data), 200
+    except Exception as e:
+        # Handle errors and send an appropriate error message
+        return jsonify({"status": "error", "message": "An error occurred while retrieving posts: " + str(e)}), 500
+
+

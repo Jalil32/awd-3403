@@ -55,7 +55,7 @@
 #post-text {
     margin-top: 0;
     font-family: "Josefin Sans", sans-serif;
-    font-size: 2.4vh; 
+    font-size: 15pt; 
     color: #D83934;
     padding: 0px 8px 0px 8px;
 }
@@ -94,7 +94,7 @@
 
 .button-labels{
     font-family: "Josefin Sans", sans-serif;
-    font-size: 2vh; 
+    font-size: 10pt; 
     color: #008f95;
     padding-right: 10px;
     margin-top: 4px;
@@ -184,7 +184,6 @@
     margin-top: 12px; 
     background-color: #D83934; 
     color: #fdfdfd;
-    font-size: pt;
     font-family: "Josefin Sans", sans-serif;
 } 
 
@@ -288,7 +287,7 @@
         padding-top: 0.5vh;
     }
     #post-text,  #post-body{
-        font-size: 2vh;
+        font-size: 4vw;
     }
     .form_label{
         font-size: 1vh;

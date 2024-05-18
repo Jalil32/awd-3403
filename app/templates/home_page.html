@@ -26,7 +26,7 @@
                     <span class="navbar-toggler">&#9776;</span>
                 </button>
                 <ul class="nav-list">
-                    <li><a href="/home" id="nav-home">HOME</a></li>
+                    <li><a href="/" id="nav-home">HOME</a></li>
                     <li><a href="/profile" id="nav-profile" class="nav-title">PROFILE</a></li>
                 </ul>
             </nav>
@@ -51,9 +51,7 @@
                             <button
                                 onclick="togglePopup()"
                                 class="close-button"
-                            >
-                                <p id="x_btn">&times;</p>
-                                <p></p>
+                            id="x_btn">&times;
                             </button>
                         </h2>
                         <h2 id="post-text">
@@ -104,7 +102,7 @@
                                 required
                             />
                             <div class="inline-rating">
-                                <label class="form-label" style="" for="name">
+                                <label class="form-label" for="name">
                                     Rating:
                                 </label>
                                 <div class="rate" id="ratingStars">
@@ -194,8 +192,9 @@
                 <div class="col-sm-3"></div>
             </div>
         </main>
+        <script src="../static/js/homepage.js"></script>
+        <script src="../static/js/posts.js"></script>
+        <script src="../static/js/script.js"></script>
     </body>
-    <script src="../static/js/homepage.js"></script>
-    <script src="../static/js/posts.js"></script>
-    <script src="../static/js/script.js"></script>
+    
 </html>

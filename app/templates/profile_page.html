@@ -11,7 +11,6 @@
     />
     <link rel="stylesheet" href="../static/css/profilepage.css">
     <link rel="stylesheet" href="../static/css/style.css" />
-    <link rel="stylesheet" href="../static/css/homepage.css"/>
     <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
@@ -22,7 +21,7 @@
 <body>
     <header>
         <nav class="navbar">
-            <h1 class="navbar-brand">Plating Perth</h1>
+            <h1 id="PlatingPerth" class="navbar-brand">Plating Perth</h1>
             <button class="navbar-toggler" onclick="toggleMenu()">
                 <span class="navbar-toggler-icon">&#9776;</span>
             </button>
@@ -34,23 +33,20 @@
     </header>
     <main>
         <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
                     <div class="container">
-                    <div class="col-sm-4" id="user-info-container">
+                    <div class="col-sm-3" id="user-info-container">
                         <div id = "profile-info">Hey {{username}}!</div>
                         <div id ="username" class = "username">Username: {{username}}</div>
                         <div id ="email" class="email">Email: {{email}}</div>
                         <button id="logoutButton">Log out</button>
                     </div>
-                    <div class="col-sm-8" id="user-posts-container"></div>
+                    <div class="col-sm-9" id="user-posts-container"></div>
                 </div>
             </div>
             </div>
-            <div class="col-sm-3"></div>
-        </div>
-
-    
+            <div class="col-sm-2"></div>    
 </main>
     <script src="../static/js/profile_page.js"></script>
     <script src="../static/js/script.js"></script>

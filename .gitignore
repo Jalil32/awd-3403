@@ -3,6 +3,7 @@ env
 .prettierrc.json
 __pycache__
 __pycache__/app.cpython-311.pyc
+.pytest_cache
 app/__pycache__
 app/.venv/include
 venv

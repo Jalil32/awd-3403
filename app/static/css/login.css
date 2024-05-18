@@ -68,6 +68,7 @@ align-items: center; /* Center vertically */
 
 .welcome h1 {
     color: black;
+    font-weight: 900;
     justify-content: center;
 }
 
@@ -132,14 +133,14 @@ input[type="text"], input[type="password"], input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #FDFDFD;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
 input[type="submit"] {
     background-color: #d83934;
-    color: white;
+    color: #FDFDFD;
     cursor: pointer;
     border: #d83934;
 }
@@ -163,19 +164,27 @@ input[type="submit"]:hover {
 @media screen and (max-width: 600px) {
     
     .container {
+        background-image: url("../../images/pexels-photo-1640774.jpeg");
         flex-direction: column; /* Stack items vertically instead of side-by-side*/
         width: 100%;
-        background-position: -300px; /*Adjusting background for smaller screen*/
         overflow-y: scroll;
 
     }
     .welcome {
         width: 100%;
         padding: 0;
+        text-shadow: 10px 10px 10px #FDFDFD;
     }
+
+    #intro_text {
+       color: #2c2c2c;
+    }
+
+    
     h1 {
         margin-bottom: 0px;
     }
+
     /* Re-adjusting signup form for mobile view? */
     .signup {
         margin-top: 20px; 
@@ -193,6 +202,7 @@ input[type="submit"]:hover {
     }
 
     #title, #intro_text {
+        font-weight: 900;
         padding-top: 4vh;
     }
 }

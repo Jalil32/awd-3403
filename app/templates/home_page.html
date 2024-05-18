@@ -1,32 +1,32 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../static/css/style.css">
-        <link rel="stylesheet" href="../static/css/homepage.css">
-        <link rel="stylesheet" href="../static/css/post_form.css">
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
-        >
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
             crossorigin="anonymous"
-        >
+        />
+        <link rel="stylesheet" href="../static/css/style.css" />
+        <link rel="stylesheet" href="../static/css/homepage.css" />
+        <link rel="stylesheet" href="../static/css/post_form.css" />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+        />
         <title>Homepage</title>
     </head>
     <body>
         <header>
             <nav class="navbar">
-                <h1 id="PlatingPerth" class="navbar-brand">Plating Perth</h1>
+                <h1 class="navbar-brand">Plating Perth</h1>
                 <button class="navbar-toggler" onclick="toggleMenu()">
                     <span class="navbar-toggler">&#9776;</span>
                 </button>
                 <ul class="nav-list">
-                    <li><a class="nav-title" href="/home" id="nav-home">HOME</a></li>
+                    <li><a href="/home" id="nav-home">HOME</a></li>
                     <li><a href="/profile" id="nav-profile" class="nav-title">PROFILE</a></li>
                 </ul>
             </nav>
@@ -51,8 +51,7 @@
                             <button
                                 onclick="togglePopup()"
                                 class="close-button"
-                                id="x_btn">
-                                &times;
+                            id="x_btn">&times;
                             </button>
                         </h2>
                         <h2 id="post-text">
@@ -193,8 +192,9 @@
                 <div class="col-sm-3"></div>
             </div>
         </main>
+        <script src="../static/js/homepage.js"></script>
+        <script src="../static/js/posts.js"></script>
+        <script src="../static/js/script.js"></script>
     </body>
-    <script src="../static/js/homepage.js"></script>
-    <script src="../static/js/posts.js"></script>
-    <script src="../static/js/script.js"></script>
+    
 </html>

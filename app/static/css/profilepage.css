@@ -86,7 +86,7 @@ body {
     border-radius: 5px;
     text-align: center;
     margin-top: 20px;
-    width: 80%;
+    width: 100%;
 }
 
 #logoutButton:hover {
@@ -253,11 +253,11 @@ making profile page box size smaller */
     }
 
     #user-info-container {
-        min-height: 2vh;
+        min-height: 10%;
         border-radius: 1vw;
         width: 85%;
-        display: flex;
-        flex: none;
+        display: block;
+        flex: auto;
         overflow-y: auto;
         margin-bottom: 10px;
         margin-top: 10px;

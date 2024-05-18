@@ -22,6 +22,7 @@ body {
 #user-info-container {
     background-color: #fdfdfd;
     width: calc(30% -10px);
+    height: 30%;
     flex-direction: column;
     float: left;
     display: flex;
@@ -34,13 +35,23 @@ body {
 }
 
 #user-posts-container {
-    width: calc(70% -10px);
     height: 100%;
     float: right;
     overflow-y: scroll;
 }
 
+#empty_profile {
+    font-family: "Josefin Sans", sans-serif;
+    color: #D83934;
+    font-size: 1.5vw;  
+    text-align: center;
+}
 
+#empty_profile:hover {
+    transform: scale(1.05);
+    text-decoration: none;
+    
+}
 .username {
     display: flex;
     margin-bottom: 10px;

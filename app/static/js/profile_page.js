@@ -41,6 +41,14 @@ document.getElementById("logoutButton").addEventListener("click", async () => {
 function renderPostsforProfile(posts) {
     const userPostsContainer = document.getElementById("user-posts-container");
     userPostsContainer.innerHTML = ""; // Clear previous posts
+    if(posts.length === 0){
+        let div = document.createElement("div");
+            div.setAttribute("id", "post_container");
+            let title = '<a href="/" id="empty_profile">Share your first plate today!</a>'
+            div.innerHTML = title;
+            userPostsContainer.appendChild(div);
+
+    }
 
         for (let i = posts.length - 1; i >= 0; i--) {
             let div = document.createElement("div");

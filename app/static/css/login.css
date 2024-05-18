@@ -6,6 +6,9 @@
     font-weight: 400;
 }    
 
+#login{
+    display: none;
+}
 
 /* left side welcome and intro container */
 .welcome {

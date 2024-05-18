@@ -60,9 +60,10 @@ main {
     overflow-y: scroll;
     border-radius: 1vw;
     border-color: #000000;
-    padding: 0.5vw;
-    margin-right: 0.5vw;
-    margin-left: 0.5vw;
+    padding: 1em;
+    margin-top: 1em;
+    margin-right: 1em;
+    margin-left: 1em;
     background-color: #fdfdfd;
     z-index: 10;
     margin-bottom: 10px;

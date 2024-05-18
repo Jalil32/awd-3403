@@ -21,7 +21,8 @@ body {
 
 #user-info-container {
     background-color: #fdfdfd;
-    width: calc(30% -10px);
+    width: 30%;
+    min-height: 220px;
     height: 30%;
     flex-direction: column;
     float: left;
@@ -85,7 +86,9 @@ body {
     border-radius: 5px;
     text-align: center;
     margin-top: 20px;
+    width: 80%;
 }
+
 #logoutButton:hover {
     background-color: #008f95;
     transform: scale(1.05);
@@ -119,41 +122,227 @@ body {
     margin-bottom: 20px;
 } 
 
+
+#post_container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 1vw;
+    border-color: #000000;
+    padding: 0.5vw;
+    margin-right: 0.5vw;
+    margin-left: 0.5vw;
+    background-color: #fdfdfd;
+    z-index: 10;
+    margin-bottom: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+#feed_stars {
+    display: flex;
+    justify-content: space-between;
+    color: #fccd5d;
+    text-align: right;
+    clear: both;
+    width: 1em;
+    font-size: 12pt;
+    margin-bottom: 1.5vh;
+    padding: 5px 10px 5px 0px;
+}
+
+#post_title {
+    font-weight: 500;
+    font-size: 24pt;
+    margin-top: 1.5vh;
+    margin-bottom: 0vh;
+    padding-top: 10px;
+}
+#post_title,
+#post_body {
+    color: #d83934;
+    font-family: "Josefin Sans", sans-serif;
+    margin-bottom: 0;
+}
+
+#post_body {
+    font-size: 15pt;
+}
+
+#post_user {
+    font-size: 13.5pt;
+    font-family: "Josefin Sans", sans-serif;
+    margin-bottom: 0;
+    align-items: center;
+    color: #008f95;
+}
+
+#post_pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding-bottom: 1vh;
+}
+
+#comments_container {
+    font-family: "Josefin Sans", sans-serif;
+    color: #008f95;
+    margin-top: 5px;
+    background-color: #fff;
+    border-top: 2px solid #eee;
+    padding-top: 10px;
+}
+
+#comment {
+    padding: 5px;
+    font-family: "Josefin Sans", sans-serif;
+    border-bottom: 1px solid #ddd;
+}
+
+#comment_text{
+    color: black;
+}
+.h3, .comment_author, #comment_text, .no-comment, .submit_comment {
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.h3{
+    margin-top: 10px;
+}
+
+
+#comment:last-child {
+    font-family: "Josefin Sans", sans-serif;
+    border-bottom: none;
+}
+
+#comment strong {
+    color: #008f95;
+}
+
+#comment_form {
+    font-family: "Josefin Sans", sans-serif;
+    padding: 10px 0;
+}
+
+#comment_input {
+    font-family: "Josefin Sans", sans-serif;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none; /* Disables resizing of textarea */
+}
+
+
 /* mobile responsivness for smaller screens
 making profile page box size smaller */
 @media screen and (max-width: 600px) {
 
-
     .container {
-        display: flex;
-        width: 85%;
-        align-items: center;
         flex-direction: column;
-        padding-top: 4vh;
+        align-items: center;
+        height: auto;
+        padding-top: 1.5vw;
         background-color: #fccd5d;
-        border-radius: 0.6vw;
+        border-radius: 1vw;
+        width: 85%;
         max-width: 100%;
-        display: flex;
-        justify-content: space-between;
-        height: 87vh;
-        overflow: hidden;
+        overflow: visible;
     }
 
     #user-info-container {
-        width: calc(30% -10px);
-        flex-direction: column;
-        float: top;
+        min-height: 2vh;
+        border-radius: 1vw;
+        width: 85%;
         display: flex;
-        flex: 1;
-        overflow-y: scroll;
-        /* background-color: yellow; */
+        flex: none;
+        overflow-y: auto;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        align-items: center;
+        padding: 1em;
     }
     
     #user-posts-container {
-        width: calc(70% -10px);
-        height: 100%;
-        float: right;
-        overflow-y: scroll;
+        width: 100%;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .username {
+        display: flex;
+        align-self: center;
+        margin-bottom: 5px;
+        color: #D83934;
+        font-size: medium;
+    }
+    
+    .email {
+        display: flex;
+        margin-bottom: 5px;
+        color: #D83934;
+        font-size: medium;
+    }
+    
+    #profile-info {
+        display: flex;
+        margin-bottom: 5px;
+        color: #D83934;
+        justify-content: center;
+        font-size: 15pt;
+        font-weight: bold;
+        align-self: center;
+    }
+
+    #logoutButton {
+        margin-top: 5px;
+        width: 80%;
+    }
+
+    #post_container {
+        padding: 1em;
+        margin: 0.5em;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    #post_title {
+        font-size: 20pt;
+        margin-top: 0.5em;
+        margin-bottom: 0;
+    }
+
+    #post_body {
+        font-size: 13pt;
+    }
+
+    #post_user {
+        font-size: 12pt;
+    }
+
+    #feed_stars {
+        font-size: 2vh;
+        padding: 5px 5px 5px 0;
+    }
+
+    #comments_container {
+        padding-top: 8px;
+    }
+
+    #comment {
+        padding: 4px;
+    }
+
+    #submit_comment {
+        padding: 4px 6px;
+    }
+
+    #comment_input {
+        padding: 6px;
+        margin-top: 5px;
+        margin-bottom: 8px;
     }
 
 }

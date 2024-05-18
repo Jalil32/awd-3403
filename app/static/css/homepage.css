@@ -1,3 +1,13 @@
+/* Existing styles */
+body {
+    height: 100vh;
+    background-color: #FDFDFD;
+    color: #e4e6eb;
+    background-image: url(../../images/big.jpeg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
 main {
     overflow-y: scroll;
     color: black;
@@ -36,7 +46,7 @@ main {
 }
 
 #feed {
-    padding: 2vh;
+    padding: 0.5vw;
     overflow-x: hidden;
     overflow-y: scroll;
     background-color: #fccd5d;
@@ -50,9 +60,9 @@ main {
     overflow-y: scroll;
     border-radius: 1vw;
     border-color: #000000;
-    padding: 1.5vh;
-    margin-right: 1.5vh;
-    margin-left: 1.5vh;
+    padding: 0.5vw;
+    margin-right: 0.5vw;
+    margin-left: 0.5vw;
     background-color: #fdfdfd;
     z-index: 10;
     margin-bottom: 10px;
@@ -68,16 +78,17 @@ main {
     clear: both;
     width: 1em;
     font-size: 3vh;
-    margin-bottom: 1.5vh;
+    margin-bottom: 0.5vw;
     padding: 5px 10px 5px 0px;
 }
 
 #post_title {
     font-weight: 500;
-    font-size: 5vh;
-    margin-top: 1.5vh;
+    font-size: 24pt;
+    margin-top: 0.5vw;
     margin-bottom: 0vh;
 }
+
 #post_title,
 #post_body {
     color: #d83934;
@@ -86,7 +97,7 @@ main {
 }
 
 #post_body {
-    font-size: 2.5vh;
+    font-size: 15pt;
 }
 
 #post_user {
@@ -118,10 +129,26 @@ main {
     font-family: "Josefin Sans", sans-serif;
     border-bottom: 1px solid #ddd;
 }
-.h3, .comment_author, .comment_text, .no-comment, .submit_comment {
+
+#comment_header, .comment_author, .comment_text, .no-comment, #submit_comment {
     font-family: "Josefin Sans", sans-serif;
 }
 
+#submit_comment {
+    background-color: #D83934;
+    color: #fdfdfd;
+    border: none;
+    padding: 5px 8px 5px 8px;
+    border-radius: 4px;
+}
+
+#comment_header {
+    margin-top: 5px;
+}
+
+#no-comment {
+    margin-bottom: 5px;
+}
 
 #comment:last-child {
     font-family: "Josefin Sans", sans-serif;
@@ -167,4 +194,79 @@ main {
     border-radius: 10px;
     width: 50%;
 }
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+    main {
+        overflow-y: auto;
+    }
 
+    #intro-text {
+        font-size: 12pt;
+        padding: 8px;
+    }
+
+    #new-post {
+        font-size: 12pt;
+        padding: 10px 5px;
+    }
+
+    #feed {
+        width:fit-content;
+        padding: 0.5em;
+        border-radius: 8px;
+    }
+
+    #post_container {
+        padding: 1em;
+        margin: 0.5em;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    #post_title {
+        font-size: 20pt;
+        margin-top: 0.5em;
+        margin-bottom: 0;
+    }
+
+    #post_body {
+        font-size: 13pt;
+    }
+
+    #post_user {
+        font-size: 12pt;
+    }
+
+    #feed_stars {
+        font-size: 2vh;
+        padding: 5px 5px 5px 0;
+    }
+
+    #comments_container {
+        padding-top: 8px;
+    }
+
+    #comment {
+        padding: 4px;
+    }
+
+    #submit_comment {
+        padding: 4px 6px;
+    }
+
+    #comment_input {
+        padding: 6px;
+        margin-top: 5px;
+        margin-bottom: 8px;
+    }
+
+    .search-bar {
+        padding: 8px;
+    }
+
+    #searchInput {
+        width: 70%;
+        padding: 8px;
+        font-size: 14pt;
+    }
+}

@@ -70,12 +70,26 @@ body {
     margin: 0;
 }
 
+#PlatingPerth{
+    font-size: 30pt;  
+  }
+  
+
 @media screen and (max-width: 700px) {
 
     .navbar-brand {
         margin-top: 10px;
+       
     }
 
+    #PlatingPerth{
+        font-size: 18pt;  
+    }
+  
+    .nav-title{
+        font-size: 15pt;
+    }
+    
     .navbar-toggler {
         display: block;
         align-items: center;

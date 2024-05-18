@@ -9,7 +9,7 @@ body {
 
 .container {
     /* justify-content: center; */
-    padding-top: 4vh;
+    padding-top: 2vh;
     background-color: #fccd5d;
     border-radius: 0.6vw;
     max-width: 100%;
@@ -20,6 +20,7 @@ body {
 }
 
 #user-info-container {
+    background-color: #fdfdfd;
     width: calc(30% -10px);
     flex-direction: column;
     float: left;
@@ -27,6 +28,8 @@ body {
     flex: 1;
     overflow: auto;
     overflow-y: scroll;
+    padding: 1vw;
+    border-radius: 0.6vw;
     /* background-color: yellow; */
 }
 
@@ -37,72 +40,19 @@ body {
     overflow-y: scroll;
 }
 
-.profile-picture {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    color: #D83934;
-}
+
 .username {
     display: flex;
     margin-bottom: 10px;
     color: #D83934;
-    /* justify-content: center; */
+    font-size: medium;
 }
 
 .email {
     display: flex;
-    /* justify-content: center; */
     margin-bottom: 10px;
     color: #D83934;
-}
-
-.bio {
-    margin-bottom: 20px;
-    color: #D83934;
-}
-
-#prev-post-txt {
-    color: black;
-}
-
-.edit-profile {
-    padding: 10px 20px;
-    background-color: #D83934;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-.edit-profile:hover {
-    background-color: #008f95;
-}
-
-.delete-profile:hover {
-    background-color: #008f95;
-}
-
-.edit-bio:hover{
-    background-color: #008f95;
-}
-
-.delete-profile {
-    padding: 10px 20px;
-    background-color: #D83934;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-    margin-top: 20px;
-    width: 50%;
-}
-
-.edit-bio {
-    padding: 10px 20px;
-    background-color: #D83934;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+    font-size: medium;
 }
 
 #profile-info {
@@ -114,21 +64,21 @@ body {
     font-weight: bold;
 }
 
-#username-title {
-    display: flex;
-    justify-content: center;
-    color: #D83934;
-    font-size: 40px;
-    margin-bottom: 40px;
 
+#logoutButton {
+    background-color: #D83934;
+    border: none;
+    padding: 0.5vw;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
 }
-
-.form-cell {
-    display: flex;
-    width: 50%;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 20px; /* Optional: Add some margin between form cells */
+#logoutButton:hover {
+    background-color: #008f95;
+    transform: scale(1.05);
+    font-size:larger;
 }
 
 .label {

@@ -1,8 +1,4 @@
 
-function goHome() {
-    window.location.href = "/";
-    window.location.reload();
-}
 
 function hamburgerBar() {
     var x = document.getElementById("navList");

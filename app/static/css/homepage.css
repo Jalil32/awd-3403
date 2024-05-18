@@ -149,6 +149,7 @@ main {
 }
 
 .search-bar {
+    font-family: "Josefin Sans", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -159,6 +160,7 @@ main {
 
 #searchInput {
     color: black;
+    font-family: "Josefin Sans", sans-serif;
     display: flex;
     border: 3px solid #fccd5d;
     padding: 10px;

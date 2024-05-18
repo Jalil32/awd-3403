@@ -1,20 +1,16 @@
-function loadHome() {
-    document.getElementById("app").innerHTML =
-        "<h1>Welcome to the Homepage</h1><p>This is the homepage of your SPA.</p>";
+
+
+function hamburgerBar() {
+    var x = document.getElementById("navList");
+    if (x.style.display === "none") {
+        x.style.display = "flex";
+    } else {
+        x.style.display = "none";
+    }
 }
 
-function loadProfile() {
-    document.getElementById("app").innerHTML =
-        "<h1>Profile Page</h1><p>Welcome to your profile.</p>";
-}
 
-function loadPosts() {
-    // 1) Fetch Posts (use json initially)
-    posts = fetch("../post.json");
-    console.log(posts);
-    // 2) Dynamically load posts
+function toggleMenu() {
+    const navList = document.querySelector('.nav-list');
+    navList.classList.toggle('active');
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    loadHome(); // Load the home page content by default
-});

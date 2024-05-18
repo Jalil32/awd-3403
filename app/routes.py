@@ -4,6 +4,7 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
+from email_validator import validate_email, EmailNotValidError
 import sqlalchemy as sa
 from app import db  # Import the database
 from app.models import User, Post, Comment  # Import your user model
@@ -142,6 +143,9 @@ def handle_login():
     email = json_data.get("email")
     password = json_data.get("password")
 
+    print(email)
+    print(password)
+
     # Check for required fields
     if not email or not password:
         return jsonify({"status": "error", "message": "Email and password are required"}), 400
@@ -180,6 +184,13 @@ def handle_signup():
     # Check for missing fields
     if not email or not username or not password or not passwordConfirm:
         return jsonify({"status": "error", "message": "Email, username, and both passwords are required"}), 400
+
+    try:
+        emailinfo = validate_email(email, check_deliverability=False)
+        print(emailinfo)
+    except EmailNotValidError as e:
+        return jsonify({"status": "error", "message": "Email is not valid, please enter an email!"}), 400
+
 
     # Ensure passwords match
     if password != passwordConfirm:

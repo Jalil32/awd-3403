@@ -154,7 +154,7 @@ function showAlert(title, message) {
 // Remove popup and redirect to homepage
 function submitRemove() {
     let popup = document.getElementById("popupOverlay");
-    document.body.removeChild(popup); // Remove the popup
+    document.body.remove(popup); // Remove the popup
     window.location.href = "/"; // Redirect to homepage
 }
 

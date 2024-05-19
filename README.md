@@ -6,7 +6,7 @@
 
 # Project Name: Plating Perth
 
-Web application for sharing and reviewing food in Perth.
+Plating Perth is a web application for sharing, reviewing and finding food in Perth. Users can write a review on their latest food adventure or find what they should eat next and they can share their opinions by commenting on the reviews or tell other users their recommendations. The application was designed to be warm, simple and friendly, using typically appetizing colors.  
 
 ## Getting Started
 

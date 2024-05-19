@@ -4,13 +4,7 @@ from flask_login import UserMixin
 from typing import Optional, List
 import sqlalchemy as sa
 import sqlalchemy.orm as so
-from app import db#, login
-from hashlib import md5
-from dataclasses import dataclass
-
-# flask db migrate - generates a migration script (needs to be incorporated into git source control idk how yet)
-# flask db upgrade - updates the database but doesn't destroy any existing data
-
+from app import db
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'

@@ -11,7 +11,6 @@ from app.models import User, Post, Comment  # Import your user model
 from app import jwt
 import os
 
-
 UPLOAD_FOLDER = './app/images'
 SEND_FOLDER = '../app/images'
 
@@ -21,24 +20,27 @@ routes = Blueprint("routes", __name__)  # Blueprint name and module name
 # In-memory token blacklist
 token_blacklist = set()
 
-# Add the revoked token to the blacklist
 @jwt.token_in_blocklist_loader
 def check_if_token_in_blacklist(jwt_header, jwt_payload):
+    """Checks if token has been revoked from logging out"""
     jti = jwt_payload['jti']
     return jti in token_blacklist
 
 @jwt.expired_token_loader
 def expired_token_callback(jwt_header, jwt_payload):
+    """Checks if token is expired"""
     # Redirect to the login page
     return render_template('login.html')
 
 @jwt.unauthorized_loader
 def handle_missing_jwt_token(error):
+    """If token missing or expired reroutes to login page"""
     return render_template('login.html')
 
 @routes.route("/api/logout", methods=["DELETE"])
 @jwt_required()
 def logout():
+    """Controls logout functionality"""
     try:
         jti = get_jwt()["jti"]
         token_blacklist.add(jti)
@@ -51,7 +53,7 @@ def logout():
 
 @routes.route('/images/<filename>')
 def uploaded_file(filename):
-    print("sending image...")
+    """Uploads image"""
     return send_from_directory(SEND_FOLDER , filename)
 
 @routes.route("/api/post", methods=["POST"])
@@ -63,12 +65,9 @@ def handle_post():
 
     if 'image' in request.files:
         image = request.files['image']
-        print(image.filename)
-        print("saving image")
         filename = secure_filename(image.filename)
         image_path = os.path.join(UPLOAD_FOLDER, filename)
         image.save(image_path)
-        print("image saved")
 
     title = request.form.get("title")
     body = request.form.get("body")
@@ -97,7 +96,6 @@ def handle_post():
     try:
         # Add the new post to the database
         db.session.add(new_post)
-        print("adding post")
         db.session.commit()
     except IntegrityError:
         db.session.rollback()  # Roll back the transaction on IntegrityError
@@ -109,7 +107,6 @@ def handle_post():
     response = new_post.as_dict()
     response['status'] = 'success'
 
-    print(response)
 
     return jsonify(response), 201
 
@@ -142,16 +139,12 @@ def handle_login():
     email = json_data.get("email")
     password = json_data.get("password")
 
-    print(email)
-    print(password)
-
     # Check for required fields
     if not email or not password:
         return jsonify({"status": "error", "message": "Email and password are required"}), 400
 
     # Find user by email
     user = User.query.filter_by(email=email).first()
-    print(user)
 
     # Validate user existence and password
     if not user or not check_password_hash(user.password_hash, password):
@@ -186,7 +179,6 @@ def handle_signup():
 
     try:
         emailinfo = validate_email(email, check_deliverability=False)
-        print(emailinfo)
     except EmailNotValidError as e:
         return jsonify({"status": "error", "message": "Email is not valid, please enter an email!"}), 400
 
@@ -224,19 +216,13 @@ def handle_signup():
     set_access_cookies(response, access_token)
     return response, 200
 
-    return response, 200
-
 @routes.route("/api/comment", methods=['POST'])
 @jwt_required()
 def create_comment():
-    print("commenting...")
     data = request.get_json()
     user_id = data.get('user_id')
     post_id = data.get('post_id')
     comment_text = data.get('comment')
-
-    print(user_id)
-    print(post_id)
 
     # Validate that user and post exist
     user = db.session.query(User).filter(User.id == user_id).first()
@@ -254,6 +240,7 @@ def create_comment():
 @routes.route("/login", methods=['GET'])
 @jwt_required()
 def login_page():
+    """Routes user to login page"""
     if get_jwt_identity():
 
         # Generate JWT token upon successful signup
@@ -264,6 +251,7 @@ def login_page():
 @routes.route("/", methods=['GET'])
 @jwt_required(True)
 def homepage():
+    """Home page controller"""
     user_id = get_jwt_identity()
 
     user = User.query.get(user_id)
@@ -273,10 +261,10 @@ def homepage():
 
     return render_template('home_page.html')
 
-#route for profile page
 @routes.route("/profile", methods=['GET'])
 @jwt_required()
 def profile_page():
+    """Profile page controller"""
     # get user id from token
     user_id = get_jwt_identity()
 
@@ -292,13 +280,10 @@ def profile_page():
     # render the profile page with user's username and email
     return render_template('profile_page.html', username=username, email=email)
 
-
-
 @routes.route("/api/post/<int:user_id>", methods=["GET"])
 @jwt_required()
 def get_posts_for_profile(user_id):
     """Retrieves all the posts to render on the front end."""
-    print(user_id)
     try:
         # Query all posts from the database including comments
         posts = Post.query.filter_by(user_id=user_id).options(db.joinedload(Post.comments)).all()
@@ -311,5 +296,3 @@ def get_posts_for_profile(user_id):
     except Exception as e:
         # Handle errors and send an appropriate error message
         return jsonify({"status": "error", "message": "An error occurred while retrieving posts: " + str(e)}), 500
-
-

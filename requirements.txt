@@ -9,3 +9,4 @@ selenium==4.21.0
 SQLAlchemy==2.0.30
 Werkzeug==3.0.3
 pytest==8.2.0
+python-dotenv==1.0.1

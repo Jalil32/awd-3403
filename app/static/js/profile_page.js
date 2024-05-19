@@ -83,16 +83,15 @@ function renderPostsforProfile(posts) {
             body.textContent = posts[i].body;
             let commentsContainer = document.createElement("div");
             commentsContainer.setAttribute("id", "comments_container");
-
+            
+            let commentsHeader = document.createElement("h3");
+            commentsHeader.textContent = "Comments";
+            commentsContainer.appendChild(commentsHeader);
+            
             // Check if there are comments and render them
             if (posts[i].comments && posts[i].comments.length > 0) {
                 posts[i].comments.forEach((comment) => {
                     // Container for comments
-                    let commentsHeader = document.createElement("h3");
-                    commentsHeader.textContent = "Comments";
-                    commentsContainer.appendChild(commentsHeader);
-
-
                     let commentDiv = document.createElement("div");
                     commentDiv.setAttribute("id", "comment");
 
@@ -137,72 +136,3 @@ function renderPostsforProfile(posts) {
     }
 }
 
-
-function handleSubmitComment(event) {
-    event.preventDefault(); // Prevent the default form submit action
-
-    const form = event.target;
-    const textarea = form.querySelector("textarea");
-    const postContainer = form.closest("#post_container");
-    const postId = postContainer.getAttribute("post_id");
-    console.log(postId);
-
-    const commentData = {
-        user_id: localStorage.getItem("user_id"), // Assuming user_id is stored in localStorage
-        post_id: postId,
-        comment: textarea.value,
-    };
-
-    if (!commentData.comment.trim()) {
-        alert("Please enter a comment before submitting.");
-        return;
-    }
-
-    fetch("/api/comment", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(commentData),
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log("Comment posted successfully:", data);
-
-            // Add comment to DOM
-            const commentsContainer = postContainer.querySelector(
-                "#comments_container",
-            );
-            const newCommentDiv = document.createElement("div");
-            newCommentDiv.setAttribute("id", "comment");
-
-            let noComment = document.getElementById("no-comment");
-
-            if (noComment) {
-                noComment.textContent = "";
-            }
-
-            const commentAuthor = document.createElement("strong");
-            commentAuthor.setAttribute("id", "comment_author");
-            commentAuthor.textContent = data.comment.author + ": "; // Adjust according to the actual username
-
-            const commentText = document.createElement("span");
-            commentText.setAttribute("id", "comment_text");
-            commentText.textContent = commentData.comment;
-
-            newCommentDiv.appendChild(commentAuthor);
-            newCommentDiv.appendChild(commentText);
-            commentsContainer.appendChild(newCommentDiv);
-
-            // Clear the textarea
-            textarea.value = "";
-        })
-        .catch((error) => {
-            console.error("Error posting comment:", error);
-        });
-}

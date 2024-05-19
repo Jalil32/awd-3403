@@ -214,7 +214,6 @@ function renderPosts(posts) {
         let commentsContainer = document.createElement("div");
         commentsContainer.setAttribute("id", "comments_container");
         let commentsHeader = document.createElement("h3");
-        commentsContainer.setAttribute("id", "comment_header");
         commentsHeader.textContent = "Comments";
         commentsContainer.appendChild(commentsHeader);
 

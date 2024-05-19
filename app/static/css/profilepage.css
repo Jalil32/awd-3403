@@ -15,8 +15,9 @@ body {
     max-width: 100%;
     display: flex;
     justify-content: space-between;
-    height: 87vh;
+    height: 80vh;
     overflow: hidden;
+    margin-bottom: 8px;
 }
 
 #user-info-container {

@@ -1,24 +1,26 @@
+// Fetch and display posts when the window loads
 window.onload = function postFeed() {
     fetch("/api/post", {
         method: "GET",
     })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Server error, please try again later.");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            allPosts = data;
-            renderPosts(allPosts);
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("Server error, please try again later.");
+        }
+        return response.json();
+    })
+    .then((data) => {
+        allPosts = data; // Store fetched posts
+        renderPosts(allPosts); // Render posts on the page
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
 };
 
+// Handle comment submission
 function handleSubmitComment(event) {
-    event.preventDefault(); // Prevent the default form submit action
+    event.preventDefault(); // Prevent default form submission
 
     const form = event.target;
     const textarea = form.querySelector("textarea");
@@ -27,7 +29,7 @@ function handleSubmitComment(event) {
     console.log(postId);
 
     const commentData = {
-        user_id: localStorage.getItem("user_id"), // Assuming user_id is stored in localStorage
+        user_id: localStorage.getItem("user_id"), // Get user_id from localStorage
         post_id: postId,
         comment: textarea.value,
     };
@@ -44,50 +46,49 @@ function handleSubmitComment(event) {
         },
         body: JSON.stringify(commentData),
     })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log("Comment posted successfully:", data);
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    })
+    .then((data) => {
+        console.log("Comment posted successfully:", data);
 
-            // Add comment to DOM
-            const commentsContainer = postContainer.querySelector(
-                "#comments_container",
-            );
-            const newCommentDiv = document.createElement("div");
-            newCommentDiv.setAttribute("id", "comment");
+        // Add comment to DOM
+        const commentsContainer = postContainer.querySelector("#comments_container");
+        const newCommentDiv = document.createElement("div");
+        newCommentDiv.setAttribute("id", "comment");
 
-            let noComment = document.getElementById("no-comment");
+        let noComment = document.getElementById("no-comment");
 
-            if (noComment) {
-                noComment.textContent = "";
-            }
+        if (noComment) {
+            noComment.textContent = "";
+        }
 
-            const commentAuthor = document.createElement("strong");
-            commentAuthor.setAttribute("id", "comment_author");
-            commentAuthor.textContent = data.comment.author + ": "; // Adjust according to the actual username
+        const commentAuthor = document.createElement("strong");
+        commentAuthor.setAttribute("id", "comment_author");
+        commentAuthor.textContent = data.comment.author + ": "; // Display the comment author's name
 
-            const commentText = document.createElement("span");
-            commentText.setAttribute("id", "comment_text");
-            commentText.textContent = commentData.comment;
+        const commentText = document.createElement("span");
+        commentText.setAttribute("id", "comment_text");
+        commentText.textContent = commentData.comment;
 
-            newCommentDiv.appendChild(commentAuthor);
-            newCommentDiv.appendChild(commentText);
-            commentsContainer.appendChild(newCommentDiv);
+        newCommentDiv.appendChild(commentAuthor);
+        newCommentDiv.appendChild(commentText);
+        commentsContainer.appendChild(newCommentDiv);
 
-            // Clear the textarea
-            textarea.value = "";
-        })
-        .catch((error) => {
-            console.error("Error posting comment:", error);
-        });
+        // Clear the textarea
+        textarea.value = "";
+    })
+    .catch((error) => {
+        console.error("Error posting comment:", error);
+    });
 }
 
+// Handle post submission
 function submitPost(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent default form submission
 
     let reviewBtn = document.getElementById("Review");
     let postData = new FormData();
@@ -98,13 +99,11 @@ function submitPost(event) {
         postData.append("image", fileInput.files[0]);
     }
 
-    let starRadios = document.querySelectorAll(
-        '.inline-rating input[type="radio"]',
-    );
+    let starRadios = document.querySelectorAll('.inline-rating input[type="radio"]');
     let checkedStars = 0;
     starRadios.forEach(function (radio) {
         if (radio.checked) {
-            checkedStars = parseInt(radio.value); // Convert the value to an integer and assign it to checkedStars
+            checkedStars = parseInt(radio.value); // Get the selected star rating
         }
     });
 
@@ -117,32 +116,31 @@ function submitPost(event) {
         method: "POST",
         body: postData, // Send the FormData object
     })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Server error, please try again later.");
-            }
-
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-            if (data.status === "success") {
-                showAlert("Post Successful!", "Your post has been plated up!");
-                
-            } else {
-                // Failed to submit post
-                console.error("Post Submission failed:", data.message);
-                showAlert("Post Unsuccessful", "Sorry! Something went wrong, please refresh and try again.");
-            }
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("Server error, please try again later.");
+        }
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+            showAlert("Post Successful!", "Your post has been plated up!"); // Show success message
+        } else {
+            // Handle post submission failure
+            console.error("Post Submission failed:", data.message);
+            showAlert("Post Unsuccessful", "Sorry! Something went wrong, please refresh and try again.");
+        }
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    });
 }
 
+// Show alert message
 function showAlert(title, message) {
     let popup = document.getElementById("popupOverlay");
-    popup.innerHTML = "";
+    popup.innerHTML = ""; // Clear previous content
     const alertBox = document.createElement('div');
     alertBox.className = 'alert_box';
     alertBox.innerHTML = `
@@ -151,18 +149,18 @@ function showAlert(title, message) {
       <button class="btn_okay" onclick='submitRemove()'>Okay!</button>
     `;
     popup.appendChild(alertBox);
-  }
-
-function submitRemove() {
-    let popup = document.getElementById("popupOverlay");
-    document.body.remove(popup);
-    window.location.href = "/"
 }
 
+// Remove popup and redirect to homepage
+function submitRemove() {
+    let popup = document.getElementById("popupOverlay");
+    document.body.removeChild(popup); // Remove the popup
+    window.location.href = "/"; // Redirect to homepage
+}
+
+// Filter posts based on search input
 function filterPosts() {
-    const searchText = document
-        .getElementById("searchInput")
-        .value.toLowerCase();
+    const searchText = document.getElementById("searchInput").value.toLowerCase();
     console.log("searching...", searchText);
     const filteredPosts = allPosts.filter(
         (post) =>
@@ -171,12 +169,13 @@ function filterPosts() {
             post.author.toLowerCase().includes(searchText),
     );
     console.log("Filtered posts:", filteredPosts);
-    renderPosts(filteredPosts);
+    renderPosts(filteredPosts); // Render the filtered posts
 }
 
+// Render posts to the DOM
 function renderPosts(posts) {
     const feedStart = document.getElementById("feed");
-    feedStart.innerHTML = "";
+    feedStart.innerHTML = ""; // Clear previous posts
 
     for (let i = posts.length - 1; i >= 0; i--) {
         let div = document.createElement("div");
@@ -193,11 +192,9 @@ function renderPosts(posts) {
             let userRating = posts[i].rating;
             let stars = "";
             for (let j = 0; j < 5; j++) {
-                if (j < userRating) {
-                    stars += '<span style="color: #FCCD5D;">★</span>';
-                } else {
-                    stars += '<span style="color: #ccc;">★</span>';
-                }
+                stars += j < userRating
+                    ? '<span style="color: #FCCD5D;">★</span>'
+                    : '<span style="color: #ccc;">★</span>';
             }
             ratingContainer.innerHTML = stars;
         }
@@ -251,7 +248,6 @@ function renderPosts(posts) {
         textarea.placeholder = "Write a comment...";
         let submitButton = document.createElement("button");
         submitButton.setAttribute("id", "submit_comment");
-
         submitButton.type = "submit";
         submitButton.textContent = "Post";
         commentForm.appendChild(textarea);
@@ -261,25 +257,10 @@ function renderPosts(posts) {
         if (posts[i].image_path) {
             let imageElement = document.createElement("img");
             imageElement.setAttribute("id", "post_pic");
-            imageElement.src = posts[i].image_path.split("app")[1]; // Assuming the path needs adjustment to be relative
-            div.append(
-                title,
-                ratingContainer,
-                imageElement,
-                user,
-                body,
-                commentsContainer,
-                commentForm,
-            );
+            imageElement.src = posts[i].image_path.split("app")[1]; // Adjust image path if necessary
+            div.append(title, ratingContainer, imageElement, user, body, commentsContainer, commentForm);
         } else {
-            div.append(
-                title,
-                ratingContainer,
-                user,
-                body,
-                commentsContainer,
-                commentForm,
-            );
+            div.append(title, ratingContainer, user, body, commentsContainer, commentForm);
         }
 
         // Append the post container to the feed

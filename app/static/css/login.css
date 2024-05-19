@@ -1,7 +1,6 @@
 /* Styling of login/signup page */
 
-   /*Page font and font weight*/
-   body {
+body {
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 400;
 }    
@@ -42,7 +41,7 @@ form {
 .container {
     display: flex;
     height: 100vh;
-    background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg'); /* background image URL */
+    background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg'); /* Background image by Ella Olsson from Pexels */
     background-size: cover; /* Cover the entire background */
     background-position: -275px center;
     border-radius: 40px 0px 0px 0px;
@@ -107,21 +106,25 @@ margin: 10px;
     display: inline-block;
     background-color: transparent;
     border: none;
-    color: #008f95;
+    color: #d83934;
     text-decoration: underline; /*underline effect*/
     cursor: pointer;
     margin-left: 10px;
 }
 
 .login-container a:hover {
-    color: darkblue; /* hover colour*/
+    color: #008f95; /* hover colour*/
+    
 }
 
 h1, p {
+    color: #fff; /* Change font color */
+    text-align: center;
     margin: 0 0 20px;
     max-width: 400px;
     font-family: 'Josefin Sans', sans-serif;
 }
+
 
 /*formatting the login/signup form*/
 form {
@@ -133,6 +136,7 @@ form {
 }
 
 input[type="text"], input[type="password"], input[type="submit"] {
+    font-family: 'Josefin Sans', sans-serif;
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -142,6 +146,7 @@ input[type="text"], input[type="password"], input[type="submit"] {
 }
 
 input[type="submit"] {
+    font-family: 'Josefin Sans', sans-serif;
     background-color: #d83934;
     color: #FDFDFD;
     cursor: pointer;
@@ -150,16 +155,19 @@ input[type="submit"] {
 
 /*Toggling submit button colour change upon hover*/
 input[type="submit"]:hover {
+    font-family: 'Josefin Sans', sans-serif;
     background-color: #d83934;
+    transform: scale(1.05);
 }
 
 /*Signup link colouring*/
-#signupLink {
-    color: #008f95;
+#signupLink, #loginButton {
+    color: #d83934;
 }
 
-#signupLink:hover {
+#signupLink:hover, #loginButton:hover {
     color: #008f95;
+    transform: scale(1.05);
 }
 
 
@@ -167,8 +175,8 @@ input[type="submit"]:hover {
 @media screen and (max-width: 600px) {
     
     .container {
-        background-image: url("../../images/pexels-photo-1640774.jpeg");
-        flex-direction: column; /* Stack items vertically instead of side-by-side*/
+        background-image: url("../../images/pexels-photo-1640774.jpeg"); /* Background image by Ella Olsson from Pexels */
+        flex-direction: column;
         width: 100%;
         overflow-y: scroll;
 

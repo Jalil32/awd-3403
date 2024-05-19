@@ -1,9 +1,8 @@
-/* Existing styles */
 body {
     height: 100vh;
     background-color: #FDFDFD;
     color: #e4e6eb;
-    background-image: url(../../images/big.jpeg);
+    background-image: url('https://images.pexels.com/photos/1660030/pexels-photo-1660030.jpeg');/* Background image by Elle Hughes from Pexels */
     background-attachment: fixed;
     background-size: cover;
 }

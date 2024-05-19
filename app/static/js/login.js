@@ -1,3 +1,4 @@
+// Get references to various DOM elements
 const signUpButton = document.getElementById('signUp');
 const loginButton = document.getElementById('loginButton');
 const loginContainer = document.getElementById('login');
@@ -10,9 +11,10 @@ const signUpLink = document.getElementById('signupLink');
 const signupError = document.getElementById('signupError');
 const loginError = document.getElementById('loginError');
 
-//toggling signup/login forms
+// Function to toggle the visibility of the signup and login forms
 function toggleForms() {
     if (loginContainer.style.display === 'none') {
+        // Show the login form and hide the signup form
         loginContainer.style.display = 'block';
         signUpForm.style.display = 'none';
         signUpHeader.style.display = 'none';
@@ -20,6 +22,7 @@ function toggleForms() {
         loginButton.style.display = 'none';
         loginHeader.style.display = 'block';
     } else {
+        // Show the signup form and hide the login form
         loginContainer.style.display = 'none';
         signUpForm.style.display = 'block';
         signUpHeader.style.display = 'block';
@@ -29,24 +32,26 @@ function toggleForms() {
     }
 }
 
+// Add event listener to login button to toggle forms on click
 loginButton.addEventListener('click', function (event) {
     event.preventDefault(); // Prevent default link functioning
     toggleForms();
 });
 
+// Add event listener to signup link to toggle forms on click
 signUpLink.addEventListener('click', function (event) {
     event.preventDefault();
     toggleForms();
 });
 
-// Signs user up and redirects to protected landing page
+// Add event listener to signup form to handle form submission
 signUpForm.addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent default form submission
 
     // Get data from form
     const formData = new FormData(this);
 
-    // Create request object
+    // Create request object with form data
     const userSignupRequest = {
         email: formData.get('email'),
         username: formData.get('username'),
@@ -54,6 +59,7 @@ signUpForm.addEventListener('submit', function (event) {
         passwordConfirm: formData.get('passwordConfirm'),
     };
 
+    // Send POST request to signup API
     fetch('api/signup', {
         method: 'POST',
         headers: {
@@ -61,37 +67,46 @@ signUpForm.addEventListener('submit', function (event) {
         },
         body: JSON.stringify(userSignupRequest),
     })
-        .then(async (response) => {
-            if (!response.ok) {
-                return response.json().then((data) => {
-                    throw new Error(data.message);
-                });
-            }
-            return response.json();
-        })
-        .then((data) => {
-            if (data.status === 'success') {
-                localStorage.setItem('username', data.username);
-                localStorage.setItem('user_id', data.user_id);
-                window.location.href = '/';
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            signupError.textContent = `${error.message}`;
-        });
+    .then(async (response) => {
+        if (!response.ok) {
+            // If response is not OK, parse error message and throw error
+            return response.json().then((data) => {
+                throw new Error(data.message);
+            });
+        }
+        // Parse successful response to JSON
+        return response.json();
+    })
+    .then((data) => {
+        if (data.status === 'success') {
+            // Store username and user_id in localStorage
+            localStorage.setItem('username', data.username);
+            localStorage.setItem('user_id', data.user_id);
+            // Redirect to the homepage
+            window.location.href = '/';
+        }
+    })
+    .catch((error) => {
+        // Handle and display errors
+        console.error('Error:', error);
+        signupError.textContent = `${error.message}`;
+    });
 });
 
-// Logs user in and redirects to protected landing page
+// Add event listener to login form to handle form submission
 loginForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent default form submission
+
+    // Get data from form
     const formData = new FormData(this);
 
+    // Create request object with form data
     const userLoginRequest = {
         email: formData.get('email'),
         password: formData.get('password'),
     };
 
+    // Send POST request to login API
     fetch('/api/login', {
         method: 'POST',
         headers: {
@@ -99,23 +114,28 @@ loginForm.addEventListener('submit', function (event) {
         },
         body: JSON.stringify(userLoginRequest),
     })
-        .then(async (response) => {
-            if (!response.ok) {
-                return response.json().then((data) => {
-                    throw new Error(data.message);
-                });
-            }
-            return response.json();
-        })
-        .then((data) => {
-            if (data.status === 'success') {
-                localStorage.setItem('username', data.username);
-                localStorage.setItem('user_id', data.user_id);
-                window.location.href = '/';
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            loginError.textContent = `${error.message}`;
-        });
+    .then(async (response) => {
+        if (!response.ok) {
+            // If response is not OK, parse error message and throw error
+            return response.json().then((data) => {
+                throw new Error(data.message);
+            });
+        }
+        // Parse successful response to JSON
+        return response.json();
+    })
+    .then((data) => {
+        if (data.status === 'success') {
+            // Store username and user_id in localStorage
+            localStorage.setItem('username', data.username);
+            localStorage.setItem('user_id', data.user_id);
+            // Redirect to the homepage
+            window.location.href = '/';
+        }
+    })
+    .catch((error) => {
+        // Handle and display errors
+        console.error('Error:', error);
+        loginError.textContent = `${error.message}`;
+    });
 });
